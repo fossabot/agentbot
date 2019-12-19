@@ -19,12 +19,10 @@ module.exports = {
 
         var tinnhan = args.join(" ")
         let m = message.guild.members.get("455935236262592512")
-        m.send(`---------------------------------------------`)
         m.send(`From: ${message.author.id}`);
         m.send(`Aka: ${message.member.displayName}`)
         m.send(`Message: ${tinnhan}`);
         m.send(`At: ${year + "-" + month + "-" + date + " " + hours + ":" + minutes }`)
-        m.send(`---------------------------------------------`)
         return channel.send(tinnhan);
 
         }
