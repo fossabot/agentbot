@@ -6,7 +6,7 @@ module.exports = {
     description: "Hiểu và nắm bắt rule khi vào.",
     usage: "_understand",
     run: async (client, message, args) => {
-    var role = message.guild.roles.find(role => role.name === "phòng đôi");
+    var role = message.guild.roles.find(role => role.name === "phongdoi");
     const promptEmbed = new RichEmbed()
         .setColor("GREEN")
         .setAuthor(`This verification becomes invalid after 30s.`)
