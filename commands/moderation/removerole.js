@@ -1,6 +1,6 @@
 //thanks a lot Satoh Sakurako
 module.exports = {
-    name: "test",
+    name: "removerole",
     category: "moderation",
     description: "Add role (dành cho admin)",
     usage: "_removerole <tag> <rolename>",
