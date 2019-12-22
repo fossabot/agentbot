@@ -2,8 +2,8 @@
 module.exports = {
     name: "eva",
     category: "moderation",
-    description: "Add role eva (dành cho saddu và admin)",
-    usage: "_adam <tag>",
+    description: "Add role eva (dành cho onetwothree và admin)",
+    usage: "_eva <tag>",
     run: async (client, message, args) => {
         if (!args[0]) {
             return message.reply("Đéo tag tao tán chết mẹ")
