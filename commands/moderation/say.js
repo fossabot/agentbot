@@ -1,5 +1,5 @@
 module.exports = {
-    name: "test",
+    name: "say",
     description: "Says your input via the bot",
     usage: "<input>",
     run: (client, message, args) => {
