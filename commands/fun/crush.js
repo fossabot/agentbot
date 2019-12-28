@@ -1,6 +1,3 @@
-const { RichEmbed } = require("discord.js");
-const { getMember } = require("../../functions.js");
-
 module.exports = {
     name: "crush",
     category: "fun",
