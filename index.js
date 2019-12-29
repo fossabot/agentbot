@@ -30,6 +30,17 @@ client.on("ready", () => {
         }
     }); 
 });
+client.on("guildMemberAdd", (member) => {
+    rule = member.guild.channels.find(c => c.name === "rule")
+    pick_role = member.guild.channels.find(c => c.name === "pick-role-ở-đây")
+    hdsd_bot_nhac = member.guild.channels.find(c => c.name === "hdsd-bot-nhạc")
+    hdsd_bot = member.guild.channels.find(c => c.name === "how-to-use-bot")
+    member.guild.channels.find(c => c.name === "welcome").send(`Xin chào ${member}, chào mừng đến tới **${member.guild.name}**! Vui lòng đọc kỹ ${rule} và pick role ở ${pick_role} nhé 😍`);
+    member.send(`Xin chào ${member}, chào mừng đến tới **${member.guild.name}**! Vui lòng đọc kỹ ${rule} và pick role ở ${pick_role} nhé 😍`)
+    member.send(`Nếu bạn không biết cách sử dụng bot, tham khảo 2 channel ${hdsd_bot_nhac} và ${hdsd_bot} trước khi hỏi các mem khác nhé ♥`)
+    member.send(`Bạn có thể click vào những cái dòng chữ được hyper lên để có thể tự dộng nhảy qua channel`)
+
+});
 
 client.on("message", async message => {
     const prefix = "_";
