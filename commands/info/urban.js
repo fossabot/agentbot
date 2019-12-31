@@ -4,7 +4,7 @@ const { RichEmbed } = require("discord.js");
 module.exports = {
     name: "urban",
     run: async (client, message, args, tools) => {
-
+        message.delete()
         if (!args[0]){
             return message.reply(`**Mày đéo nhập từ tao tìm bằng cu**`)
         } 
