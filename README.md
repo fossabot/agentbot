@@ -13,3 +13,4 @@ modules need to install:
 # strict-uri-encode
 # mathjs
 # util
+# ms
