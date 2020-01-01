@@ -6,7 +6,7 @@ let warns = JSON.parse(fs.readFileSync("./warnings.json", "utf8"));
 module.exports = {
     name: "warn",
     description: "Cảnh cáo",
-    usage: "_warn <tag> chỉ có admin",
+    usage: "_warn <tag> (chỉ có admin và mod)",
     run: (client, message, args) => {
 
   //!warn @daeshan <reason>
