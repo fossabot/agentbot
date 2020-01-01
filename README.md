@@ -9,3 +9,7 @@ modules need to install:
 # dotenv
 # get-json
 # relevant-urban
+# dateformat
+# strict-uri-encode
+# mathjs
+# util
