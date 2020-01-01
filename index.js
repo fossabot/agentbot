@@ -50,5 +50,11 @@ client.on("message", async message => {
     if (command) 
         command.run(client, message, args);
 });
-
+//console chat
+let y = process.openStdin()
+y.addListener("data", res=> {
+    let x = res.toString().trim().split(/ +/g)
+    client.channels.get("636287405703299074").send(x.join(" "));
+});
+//end console chat
 client.login(process.env.TOKEN);
