@@ -1,14 +1,14 @@
 const { RichEmbed } = require("discord.js");
 module.exports = {
-    name: "poll",
+    name: "tpoll",
     category: "moderation",
     description: "Tạo poll",
     usage: "_poll <what to poll>",
     run: async (client, message, args) => {
         if(!args[0]) return message.channel.send("Đéo ghi gì tao tạo poll bằng chim =))")
         if(message.member.roles.some(r=>["admin","mod"].includes(r.name)) || message.author.id == "455935236262592512"){
-            const channel = message.guild.channels.find(c => c.name === "poll")
-            if(!channel) return message.reply("Đéo tìm thấy phòng tên Poll")
+            const channel = client.channels.get("663971661208485971")
+            if(!channel) return message.reply("Đéo tìm thấy phòng, check lại config")
             const embed = new RichEmbed()
                 .setColor('RANDOM')
                 .setFooter('React to vote!')

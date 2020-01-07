@@ -13,7 +13,7 @@ module.exports = {
         message.guild.createRole({
             name: name,
             color: args[0],
-            position: '92',
+            position: '15',
           })
         return message.reply("Done!")
     }

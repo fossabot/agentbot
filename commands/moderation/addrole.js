@@ -14,7 +14,7 @@ module.exports = {
         }
         var role_cat = args.slice(1).join(" ")
         let user = message.mentions.members.first() || message.guild.members.get(args[0]);
-        var role = message.guild.roles.find(role => role.name === role_cat);
+        var role = message.guild.roles.find(role => role.name == role_cat);
         if (!user)
             return message.reply("Đéo tìm thấy người mày tag, chắc là mày ngu hoặc là tao ngu.")
         if (!role)

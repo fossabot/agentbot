@@ -8,7 +8,7 @@ module.exports = {
     description: "Kicks the member",
     usage: "<id | mention>",
     run: async (client, message, args) => {
-        const logChannel = message.guild.channels.find(c => c.name === "log") || message.channel;
+        const logChannel = message.guild.channels.find(c => c.name === "📝log📝") || message.channel;
 
         if (message.deletable) message.delete();
 
@@ -37,7 +37,6 @@ module.exports = {
         }
 
         const toKick = message.mentions.members.first() || message.guild.members.get(args[0]);
-
         // No member found
         if (!toKick) {
             return message.reply("Couldn't find that member, try again")
@@ -78,7 +77,6 @@ module.exports = {
             // The verification stuffs
             if (emoji === "✅") {
                 msg.delete();
-
                 toKick.kick(args.slice(1).join(" "))
                     .catch(err => {
                         if (err) return message.channel.send(`Well.... the kick didn't work out. Here's the error ${err}`)

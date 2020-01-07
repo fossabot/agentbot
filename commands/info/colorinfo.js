@@ -2,6 +2,7 @@ var getJSON = require('get-json')
 const { RichEmbed } = require("discord.js");
 module.exports = {
     name: "colorinfo",
+    category: "info",
     description:"Get JSON",
     run: (client, message, args) => {
     var color = args[0];

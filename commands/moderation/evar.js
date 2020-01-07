@@ -2,7 +2,7 @@
 module.exports = {
     name: "evar",
     category: "moderation",
-    description: "Remove role eva (dành cho onetwothree và admin)",
+    description: "Remove role eva (dành cho onetwothree và duy)",
     usage: "_evar <tag>",
     run: async (client, message, args) => {
         if (!args[0]) {

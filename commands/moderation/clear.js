@@ -15,7 +15,7 @@ module.exports = {
 
         // Check if args[0] is a number
         if (isNaN(args[0]) || parseInt(args[0]) <= 0) {
-            return message.reply("Yeah.... That's not a numer? I also can't delete 0 messages by the way.").then(m => m.delete(5000));
+            return message.reply("Yeah.... That's not a number? I also can't delete 0 messages by the way.").then(m => m.delete(5000));
         }
 
         // Maybe the bot can't delete messages
@@ -31,8 +31,8 @@ module.exports = {
             deleteAmount = parseInt(args[0]);
         }
 
-        message.channel.bulkDelete(deleteAmount, true)
-            .then(deleted => message.channel.send(`I deleted \`${deleted.size}\` messages.`))
+        message.channel.bulkDelete(deleteAmount+1, true)
+            .then(deleted => message.channel.send(`I deleted \`${deleted.size}\` messages.`)).then(m => m.delete(5000))
             .catch(err => message.reply(`Something went wrong... ${err}`));
     }
 }

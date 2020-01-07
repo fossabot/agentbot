@@ -3,7 +3,7 @@ module.exports = {
     description: "Gởi confession",
     usage: "_cfs <nội dung>",
     run: (client, message, args) => {
-        const channel = message.guild.channels.find(c => c.name === "cfs")
+        const channel = client.channels.get("663967189984083980")
         if (!channel)
             return message.channel.send("Couldn't find a `#cfs` channel").then(m => m.delete(5000));
         if (!args[0])

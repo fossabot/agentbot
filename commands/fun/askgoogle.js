@@ -1,6 +1,8 @@
 const encode = require('strict-uri-encode')
 module.exports = {
     name: "askgoogle",
+    category: "fun",
+    description:"như command",
     run: async (client, message, args, tools) => {
         message.delete()
         if (!args[0]){

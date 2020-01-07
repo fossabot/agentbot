@@ -1,7 +1,7 @@
 module.exports = {
     name: "ask",
     category: "fun",
-    description: "Thử nghiệm code",
+    description: "Hỏi :)",
     run: async (client, message, args) => {
         if (!args[0]) {
             return message.reply("Kêu tao lên đéo hỏi gì là tao tán vỡ mồm 😡")

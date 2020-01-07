@@ -34,7 +34,7 @@ module.exports = {
   .addField("Number of Warnings", warns[wUser.id].warns)
   .addField("Reason", reason);
 
-  let warnchannel = message.guild.channels.find(c=>c.name ==="log");
+  let warnchannel = message.guild.channels.find(c=>c.name ==="📝log📝");
   if(!warnchannel) return message.reply("Couldn't find channel #log");
 
   warnchannel.send(warnEmbed);

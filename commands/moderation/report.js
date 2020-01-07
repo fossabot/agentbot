@@ -5,7 +5,7 @@ module.exports = {
     name: "report",
     category: "moderation",
     description: "Reports a member",
-    usage: "_report <tag> <lý do>",
+    usage: "<mention, id>",
     run: async (client, message, args) => {
         if (message.deletable) message.delete();
 
@@ -20,7 +20,7 @@ module.exports = {
         if (!args[1])
             return message.channel.send("Please provide a reason for the report").then(m => m.delete(5000));
         
-        const channel = message.guild.channels.find(c => c.name === "report")
+        const channel = client.channels.get("664007055278997514")
             
         if (!channel)
             return message.channel.send("Couldn't find a `#report` channel").then(m => m.delete(5000));
