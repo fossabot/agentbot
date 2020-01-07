@@ -1,6 +1,6 @@
 const { RichEmbed } = require("discord.js");
 module.exports = {
-    name: "tpoll",
+    name: "poll",
     category: "moderation",
     description: "Tạo poll",
     usage: "_poll <what to poll>",
