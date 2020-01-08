@@ -54,7 +54,7 @@ client.on("message", async message => {
 let y = process.openStdin()
 y.addListener("data", res=> {
     let x = res.toString().trim().split(/ +/g)
-    client.channels.get("650566366172282893").send(x.join(" "));
+    client.channels.get("663966227332333628").send(x.join(" "));
 });
 //end console chat
 client.login(process.env.TOKEN);
