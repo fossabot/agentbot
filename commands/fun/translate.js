@@ -1,4 +1,4 @@
-var googleTranslate = require('google-translate')('AIzaSyD_wT8FYyIxEA1nZvY_V5C3XM7hCeu_kRM')
+var googleTranslate = require('google-translate')('URAPIKEY')
 const { RichEmbed } = require("discord.js");
 module.exports = {
     name: "translate",
@@ -10,6 +10,7 @@ module.exports = {
         let lang = args[0];
         let que = args.slice(1).join(' ');
         googleTranslate.translate(`${que}`,`${lang}`,function(err,translation){
+            if (!err){
             const embed = new RichEmbed() 
                 .setDescription(`Google translate bot`)
                 .addField(`Translate`,`${translation.detectedSourceLanguage} - ${lang}`)
@@ -17,6 +18,11 @@ module.exports = {
                 .addField(`After translate: `,`${translation.translatedText}`)
                 .setFooter(`By Duy đẹp trai`)
             message.channel.send(embed);
+            } else {
+                message.reply("Bot lỗi mẹ rồi, một là tao ngu hai là mày ngu!")
+            }
+        
+
         })
         
     }
