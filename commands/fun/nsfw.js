@@ -1,15 +1,26 @@
 const { KSoftClient } = require('ksoft.js');
+const { RichEmbed } = require('discord.js')
 
-const ksoft = new KSoftClient('URTOKEN');
+const ksoft = new KSoftClient('TOKEN');
 
 module.exports = {
     name: "nsfw",
     category: "nsfw",
     description: "send nsfw images",
     run: async (client, message, args) => {
-        return message.channel.send("Tính năng sắp ra mắt, hãy đón chờ nhé :D")
-        const  url  = await ksoft.images.aww();
-        message.channel.send(url); 
+        if(!message.channel.nsfw){
+            message.channel.send("Chỉ xài ở phòng nsfw, mày xài phòng khác discord nó xoá server tao thì tao ăn cám à.");
+        } else {
+        const  respond  = await ksoft.images.nsfw();
+        const embed = new RichEmbed()
+            .setFooter(`Click here to download!`)
+            .setDescription(`NSFW image:`)
+            .setURL(respond.url)
+            .setFooter(`Get by AgentBot`)
+            .setImage(respond.url)
+        return message.channel.send(embed)
+        }
+
     }
 }
     
