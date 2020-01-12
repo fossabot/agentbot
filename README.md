@@ -14,3 +14,6 @@ modules need to install:
 # mathjs
 # util
 # ms
+# ksoft.js
+# string-similarity
+# google-translate
