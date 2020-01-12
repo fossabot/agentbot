@@ -14,3 +14,4 @@ util
 ms
 ksoft.js
 string-similarity
+google-translate
