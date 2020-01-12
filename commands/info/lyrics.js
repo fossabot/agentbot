@@ -1,7 +1,7 @@
 const { KSoftClient } = require('ksoft.js');
 const { RichEmbed } = require('discord.js')
 
-const ksoft = new KSoftClient('cb7aa777fc9e3513c0feff1d1f7c529abd5aee75');
+const ksoft = new KSoftClient('TOKEN');
 
 module.exports = {
     name: "lyrics",
