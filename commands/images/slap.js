@@ -6,7 +6,7 @@ module.exports = {
     description: "Slap someone :D ",
     usage:"_slap <@tag>",
     run: (client, message, args) => {
-        let url = `https://api.giphy.com/v1/gifs/random?api_key=jw9hRDeB0uuU5PPqIHjKk6UZgrMnJh3q&tag=slap&rating=R`
+        let url = `https://api.giphy.com/v1/gifs/random?api_key=URAPIKEY&tag=slap&rating=R`
         getJSON(url, function(error,response){
         let person = message.mentions.members.first() || message.guild.members.get(args[0]);
         if (!args[0] || (!person)){
