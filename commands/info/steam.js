@@ -8,7 +8,7 @@ module.exports = {
     description: "Pull out steam info",
     usage: "_steam <ur custom URL name on the link> ",
     run: async (bot,message,args ) => {
-        const token = "FB9E4D0E1F89B9A2E17F2FB22BC46C7A"
+        const token = "TOKEN"
         if(!args[0]) return message.channel.send("Mày không gởi tên tài khoản tìm bằng cc")
         const url = `http://api.steampowered.com/ISteamUser/ResolveVanityURL/v0001/?key=${token}&vanityurl=${args.join(" ")}`;
 
