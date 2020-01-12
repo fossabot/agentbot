@@ -11,3 +11,6 @@ dateformat
 strict-uri-encode
 mathjs
 util
+ms
+ksoft.js
+string-similarity
