@@ -3,6 +3,7 @@ const ms = require('ms')
 
 module.exports = {
     name: "reminder",
+    category: "info",
     description: "Reminder",
     usage:"_reminder <time> (5s,15m,1h,2d) <text>",
     run: async (client, message, args) => {

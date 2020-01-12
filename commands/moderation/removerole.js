@@ -1,6 +1,7 @@
-//thanks a lot Satoh Sakurako
+let stringSimilarity = require('string-similarity')
 module.exports = {
     name: "removerole",
+    aliases: ["roleremove"],
     category: "moderation",
     description: "Add role (dành cho admin)",
     usage: "_removerole <tag> <rolename>",
@@ -12,15 +13,16 @@ module.exports = {
         if (message.author.id != '455935236262592512') {
             return message.reply("Code này dành riêng cho Duy")
         }
-        var role_cat = args.slice(1).join(" ")
+        let roles = [];
+        roles.push(message.guild.roles.map(g => g.name))
+        var search = args.slice(1).join(' ')
+        var matches = stringSimilarity.findBestMatch(search, roles[0])
         let user = message.mentions.members.first() || message.guild.members.get(args[0]);
-        var role = message.guild.roles.find(role => role.name === role_cat);
+        var role = message.guild.roles.find(role => role.name === matches.bestMatch.target);
         if (!user)
             return message.reply("Đéo tìm thấy người mày tag, chắc là mày ngu hoặc là tao ngu.")
-        if (!role)
-            return message.reply(`Đéo tìm thấy role ${role_cat}!`)
-
-        message.guild.member(user).removeRole(role);
-        message.channel.send("✅ Đã xoá role")
+        
+        message.guild.member(user).removeRole(role).catch(err => message.channel.send(err.message));
+        message.channel.send(`✅ Đã xoá role **${role.name}**`)
     }
 }

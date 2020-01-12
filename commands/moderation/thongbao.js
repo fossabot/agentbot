@@ -1,6 +1,7 @@
 module.exports = {
     name: "thongbao",
-    description: "Như tên ",
+    description: "Thông báo",
+    category: "moderation",
     usage: "<input> (chỉ có admin đẹp trai mới được xài)",
     run: (client, message, args) => {
         message.delete();

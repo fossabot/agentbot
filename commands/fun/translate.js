@@ -1,7 +1,8 @@
-var googleTranslate = require('google-translate')('URAPIKEY')
+var googleTranslate = require('google-translate')('AIzaSyD_wT8FYyIxEA1nZvY_V5C3XM7hCeu_kRM')
 const { RichEmbed } = require("discord.js");
 module.exports = {
     name: "translate",
+    category: "fun",
     description: "Translate",
     usage: "_translate <target_lang> (en) <query>",
     run: (client, message, args) => {

@@ -3,6 +3,10 @@ const{ inspect } = require("util")
 const ownerid = "455935236262592512"
 module.exports = {
     name: "eval",
+    aliases: ["e"],
+    category: "moderation",
+    description:"Execute javascript code",
+    usage:"_eval or _e <js code>",
     run: async (client, message, args, tools) => {
         if (message.author.id == ownerid){
             let toEval = args.join(" ");

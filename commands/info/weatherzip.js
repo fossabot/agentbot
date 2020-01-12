@@ -2,6 +2,7 @@ var getJSON = require('get-json')
 const { RichEmbed } = require("discord.js");
 module.exports = {
     name: "weatherzip",
+    category: "info",
     description:"Get JSON",
     usage:"_weatherzip <zipcode>,<country code (2 letters)>",
     run: (client, message, args) => {

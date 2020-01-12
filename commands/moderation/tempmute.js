@@ -1,5 +1,6 @@
 module.exports = {
     name: "tempmute",
+    category: "moderation",
     description: "Says your input via the bot",
     usage: "_tempmute <@tag> <time> <reason>",
     run: (client, message, args) => {

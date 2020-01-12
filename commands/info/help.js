@@ -19,6 +19,7 @@ module.exports = {
 function getAll(client, message) {
     const embed = new RichEmbed()
         .setColor("RANDOM")
+        .setAuthor(`Sử dụng _help <lệnh> để xem chi tiết`)
 
     const commands = (category) => {
         return client.commands
@@ -52,6 +53,7 @@ function getCMD(client, message, input) {
         info += `\n**Usage**: ${cmd.usage}`;
         embed.setFooter(`Syntax: <> = required, [] = optional`);
     }
+    if (cmd.note) info += `\n**Note**: ${cmd.note}`;
 
     return message.channel.send(embed.setColor("GREEN").setDescription(info));
 }

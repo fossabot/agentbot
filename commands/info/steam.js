@@ -4,6 +4,7 @@ const { stripIndents } = require("common-tags")
 const dateFormat = require("dateformat")
 module.exports = {
     name: "steam",
+    category: "info",
     description: "Pull out steam info",
     usage: "_steam <ur custom URL name on the link> ",
     run: async (bot,message,args ) => {

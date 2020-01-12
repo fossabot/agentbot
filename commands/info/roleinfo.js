@@ -1,9 +1,17 @@
 const { RichEmbed } = require("discord.js");
+let stringSimilarity = require('string-similarity');
+
 module.exports = {
     name: "roleinfo",
-    description: "Roleinfo",
+    category: "info",
+    description: "Trà về thông tên về role",
     run: async (client, message, args) => {
-        var role = message.guild.roles.find(role => role.name === args.join(' '))
+        let roles = [];
+        roles.push(message.guild.roles.map(g => g.name))
+        var search = args.join(' ');
+        var matches = stringSimilarity.findBestMatch(search, roles[0])
+        var find = matches.bestMatch.target
+        var role = message.guild.roles.find(role => role.name === find)
         let membersWithRole = message.guild.roles.get(role.id).members;
         const embed = new RichEmbed()
             .setColor(role.color)

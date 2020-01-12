@@ -1,5 +1,6 @@
 module.exports = {
     name: "avatar",
+    category: "info",
     description: "Get avatar ",
     usage: "_avatar <tag>",
     run: (client, message, args) => {

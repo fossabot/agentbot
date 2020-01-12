@@ -3,8 +3,10 @@ const { RichEmbed } = require("discord.js");
 
 module.exports = {
     name: "urban",
+    category: "info",
+    description: "Get word explain by UrbanDict",
+    usage: "_urban <query>",
     run: async (client, message, args, tools) => {
-        message.delete()
         if (!args[0]){
             return message.reply(`**Mày đéo nhập từ tao tìm bằng cu**`)
         } 
@@ -21,6 +23,6 @@ module.exports = {
             .addField('Author: ',res.author,true)
             .addField('Rating: ',`**\`Upvotes: ${res.thumbsUp} | Downvotes: ${res.thumbsDown}\`**`)
         
-        message.channel.send(embed).then(m => m.delete(10000));
+        message.channel.send(embed);
     }
 }

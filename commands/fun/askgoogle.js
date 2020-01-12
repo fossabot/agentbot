@@ -8,7 +8,6 @@ module.exports = {
         if (!args[0]){
             return message.reply(`**Mày đéo nhập gì tao tìm bằng cu**`)
         } 
-        
         let question = encode(args.join(' '));
         let link = `https://lmgtfy.com/?q=${question}`;
         message.channel.send(`**<${link}>**`)

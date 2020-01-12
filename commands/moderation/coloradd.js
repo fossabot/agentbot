@@ -1,5 +1,7 @@
 module.exports = {
     name: "coloradd",
+    aliases: ["addcolor"],
+    category: "moderation",
     description:"Add role with color",
     usage:"_coloradd <hexcolor or r,g,b> <name>",
     run: (client, message, args) => {

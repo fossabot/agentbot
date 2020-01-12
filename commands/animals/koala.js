@@ -2,7 +2,7 @@ var getJSON = require("get-json")
 const { RichEmbed } = require("discord.js")
 module.exports = {
     name: "koala",
-    category: "fun",
+    category: "animals",
     description: "Gởi ảnh của koala ",
     usage:"_koala",
     run: async (client, message, args) => {
