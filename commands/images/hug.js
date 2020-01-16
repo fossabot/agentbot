@@ -11,12 +11,13 @@ module.exports = {
             if(!error){
                 if (!args[0]){
                     const embed1 = new RichEmbed()
-                        .setDescription(`${message.member.displayName} đã ôm tất cả mọi người <3`)
+                        .setDescription(`<@${message.member.id}> đã ôm tất cả mọi người <3`)
                         .setImage(response.link)
                         .setFooter(`By AgentBot đẹp trai`)
                     return message.channel.send(embed1)
                 }
                 let person = message.mentions.members.first() || message.guild.members.get(args[0]);
+                    if(person.id == message.author.id) return message.reply("Địt mẹ mày tự ôm một mình à :)")
                     const embed = new RichEmbed()
                     .setDescription(`Awwww, <@${message.member.id}> đã ôm <@${person.id}> <3`)
                     .setImage(response.link)
