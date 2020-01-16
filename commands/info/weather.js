@@ -10,6 +10,7 @@ module.exports = {
         var query = args.join(' ');
         weather.find({search: query,degreeType: 'C'}, function(err, result) {
             if (err) return message.channel.send(`Bot lỗi mẹ rồi, thông tin lỗi: ${err}`)
+            if (result.length === 0) return message.reply(`Bot đéo tìm ra được tên thành phố đó, mày có nhập sai chỗ lol nào không ?`)
             var current = result[0].current;
             var location = result[0].location;
             const embed = new RichEmbed()
