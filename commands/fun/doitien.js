@@ -1,7 +1,7 @@
 const { KSoftClient } = require('ksoft.js');
 const { RichEmbed } = require('discord.js');
 
-const ksoft = new KSoftClient('cb7aa777fc9e3513c0feff1d1f7c529abd5aee75');
+const ksoft = new KSoftClient('URTOKEN');
 
 module.exports = {
     name: "doitien",
@@ -13,7 +13,7 @@ module.exports = {
         if (!args[0]) return message.reply("Đéo ghi số tiền sao tao chuyển được :)")
         let val = args[0];
         if (!args[1] || !args[2]) return message.reply("Đéo ghi tiền tệ tao đổi bằng cu")
-        let before = args[1];
+        let before = args[1].toUpperCase();
         let after = args[2];
         const  respond  = await ksoft.kumo.convert(val,before,after);
         const embed = new RichEmbed()
