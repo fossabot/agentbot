@@ -22,7 +22,7 @@ module.exports = {
                 .addField(`Feels like: `,`${current.feelslike} °C`,true)
                 .addField(`Winds: `, current.winddisplay,true)
                 .addField(`Humidity: `, `${current.humidity}%`,true)
-                .setFooter(`Create by Duy đẹp trai vãi lồn ;)`)
+                .setFooter(`Created by Duy đẹp trai vãi lồn ;)`)
             message.channel.send(embed)
             });
     }
