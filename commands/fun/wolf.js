@@ -1,6 +1,6 @@
 const fetch = require('node-fetch');
 const encode = require('strict-uri-encode')
-var API_KEY = 'KEY'
+var API_KEY = 'API_KEY'
 module.exports = {
     name: "wolf",
     category: "fun",
@@ -13,6 +13,7 @@ module.exports = {
         fetch(url)
         .then(res => res.text())
         .then(body => {
+            if (body =="Wolfram|Alpha did not understand your input") return message.reply("Input ncc, tao tìm không ra câu trả lời.")
             message.channel.send(body)
         });
     }
