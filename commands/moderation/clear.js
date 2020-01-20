@@ -4,9 +4,7 @@ module.exports = {
     category: "moderation",
     description: "Clears the chat",
     run: async (client, message, args) => {
-        if (message.deletable) {
-            message.delete();
-        }
+        message.delete();
     
         // Member doesn't have permissions
         if (!message.member.hasPermission("MANAGE_MESSAGES")) {
@@ -31,7 +29,7 @@ module.exports = {
             deleteAmount = parseInt(args[0]);
         }
 
-        message.channel.bulkDelete(deleteAmount+1, true)
+        message.channel.bulkDelete(deleteAmount, true)
             .then(deleted => message.channel.send(`I deleted \`${deleted.size}\` messages.`)).then(m => m.delete(5000))
             .catch(err => message.reply(`Something went wrong... ${err}`));
     }
