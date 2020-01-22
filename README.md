@@ -17,3 +17,4 @@ modules need to install:
 # ksoft.js
 # string-similarity
 # google-translate
+# weather-js
