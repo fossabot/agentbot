@@ -7,6 +7,7 @@ module.exports = {
     run: (client,message,args) => {
         let user = message.mentions.members.first() || message.guild.members.get(args[0])
         var helprole = message.guild.roles.get("666039494193184788");
+        if (!user) return message.reply(`Đéo tìm được người mày cần tìm :)`)
         message.guild.member(user).removeRole(helprole).catch(err => message.channel.send(err.message));
         message.reply(`Đã xoá ticket của ${user}`)
     }

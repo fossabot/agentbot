@@ -2,22 +2,22 @@ const {RichEmbed} = require("discord.js")
 const fetch = require("node-fetch")
 const { stripIndents } = require("common-tags")
 const dateFormat = require("dateformat")
+var {steam_token} = require('../../apikey.json')
 module.exports = {
     name: "steam",
     category: "info",
     description: "Pull out steam info",
     usage: "_steam <ur custom URL name on the link> ",
     run: async (bot,message,args ) => {
-        const token = "TOKEN"
         if(!args[0]) return message.channel.send("Mày không gởi tên tài khoản tìm bằng cc")
-        const url = `http://api.steampowered.com/ISteamUser/ResolveVanityURL/v0001/?key=${token}&vanityurl=${args.join(" ")}`;
+        const url = `http://api.steampowered.com/ISteamUser/ResolveVanityURL/v0001/?key=${steam_token}&vanityurl=${args.join(" ")}`;
 
         fetch(url).then(res => res.json()).then(body => {
             if (body.response.success === 42 ) return message.channel.send("Không tìm được tên, một là mày ngu hai là tao ngu")
 
                 const id = body.response.steamid;
-                const summaries = `http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=${token}&steamids=${id}`;
-                const bans = `http://api.steampowered.com/ISteamUser/GetPlayerBans/v1/?key=${token}&steamids=${id}`;
+                const summaries = `http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=${steam_token}&steamids=${id}`;
+                const bans = `http://api.steampowered.com/ISteamUser/GetPlayerBans/v1/?key=${steam_token}&steamids=${id}`;
                 const state = ["Offline", "Online", "Busy", "Away", "Snooze", "Looking to trade", "Looking to play"]
         fetch(summaries).then(res => res.json()).then(body => {
             if(!body.response) return message.channel.send("Tao không tìm được tên, chắc steam nghỉ việc rồi");

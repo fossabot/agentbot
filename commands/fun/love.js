@@ -10,7 +10,7 @@ module.exports = {
         // Get a member from mention, id, or username
         let person = getMember(message, args[0]);
 
-        if (!person || message.author.id=== person.id) {
+        if (!person || message.author.id === person.id) {
             person = message.guild.members
                 .filter(m => m.id !== message.author.id)
                 .random();

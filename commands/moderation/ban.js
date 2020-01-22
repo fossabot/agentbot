@@ -8,7 +8,7 @@ module.exports = {
     description: "bans the member",
     usage: "<id | mention>",
     run: async (client, message, args) => {
-        const logChannel = message.guild.channels.find(c => c.name === "📝log📝") || message.channel;
+        const logChannel = message.guild.channels.find(c => c.name === "log📝") || message.channel;
 
         if (message.deletable) message.delete();
 
@@ -61,8 +61,8 @@ module.exports = {
             .setThumbnail(toBan.user.displayAvatarURL)
             .setFooter(message.member.displayName, message.author.displayAvatarURL)
             .setTimestamp()
-            .setDescription(stripIndents`**- baned member:** ${toBan} (${toBan.id})
-            **- baned by:** ${message.member} (${message.member.id})
+            .setDescription(stripIndents`**- Baned member:** ${toBan} (${toBan.id})
+            **- Baned by:** ${message.member} (${message.member.id})
             **- Reason:** ${args.slice(1).join(" ")}`);
 
         const promptEmbed = new RichEmbed()

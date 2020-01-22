@@ -2,24 +2,21 @@ const { RichEmbed } = require("discord.js");
 var getJSON = require("get-json");
 var { giphy_key } = require("../../apikey.json")
 module.exports = {
-    name: "punch",
+    name: "kiss",
     category: "images",
-    description: "Punch someone :D ",
-    usage:"_punch <@tag>",
+    description: "Kiss someone :) (lưu ý chúng tôi không thích xem cẩu lương nhé) ",
+    usage:"_kiss <@tag>",
     run: (client, message, args) => {
-        let url = `https://api.giphy.com/v1/gifs/random?api_key=${giphy_key}&tag=punch&rating=R`
+        let url = `https://api.giphy.com/v1/gifs/random?api_key=${giphy_key}&tag=kiss&rating=R`
         getJSON(url, function(error,response){
+            if (error) return message.channel.send('Bot gặp lỗi trong khi lấy hình, vui lòng thử lại sau')
         let person = message.mentions.members.first() || message.guild.members.get(args[0]);
         if (!args[0] || (!person)){
-            const embed1 = new RichEmbed()
-                .setDescription(`<@${message.member.id}> đã tự đấm chính mình 👊`)
-                .setImage(response.data.images.original.url)
-                .setFooter(`AgentBot đoán là thằng này bị ngu =))))`)
-            return message.channel.send(embed1)
+            return message.reply(`Mày đéo thể tự kiss chính mình được nhé địt mẹ :) `)
         } else {
 
             const embed = new RichEmbed()
-                .setDescription(`<@${message.member.id}> đã đấm vỡ mồm 🤜 <@${person.id}> 🤛`)
+                .setDescription(`<@${message.member.id}> đã thơm <@${person.id}> vài cái =))) 💋`)
                 .setImage(response.data.images.original.url)
                 .setFooter(`By AgentBot đẹp trai`)
             return message.channel.send(embed)

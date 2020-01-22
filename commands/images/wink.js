@@ -8,6 +8,7 @@ module.exports = {
     run: (client, message, args) => {
         let url = `https://some-random-api.ml/animu/wink`
         getJSON(url, function(error,response){
+            if (error) return message.channel.send('Bot gặp lỗi trong khi lấy hình, vui lòng thử lại sau')
             const embed = new RichEmbed()
             .setDescription(`<@${message.member.id}> vừa mới nháy mắt với ai đó 🤷‍♂️`)
             .setImage(response.link)
