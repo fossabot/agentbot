@@ -2,9 +2,9 @@ const { RichEmbed } = require("discord.js");
 var getJSON = require("get-json");
 var { giphy_key } = require("../../apikey.json")
 module.exports = {
-    name: "thamster",
+    name: "hamster",
     category: "animals",
-    description: "Lấy gifs của rái cá ",
+    description: "Lấy gifs của hamster ",
     usage:"_hamster",
     run: (client, message, args) => {
         let url = `https://api.giphy.com/v1/gifs/random?api_key=${giphy_key}&tag=hamsters&rating=PG-13`
