@@ -1,0 +1,44 @@
+{
+  "name": "agent-bot",
+  "version": "3.0.0",
+  "description": "discord bot",
+  "main": "index.js",
+  "dependencies": {
+    "ascii-table": "0.0.9",
+    "async": "^3.1.0",
+    "axios": "^0.19.1",
+    "common-tags": "^1.8.0",
+    "dateformat": "^3.0.3",
+    "discord.js": "^11.5.1",
+    "dotenv": "^8.2.0",
+    "erela.js": "^1.0.6",
+    "fs": "^0.0.1-security",
+    "get-json": "^1.0.1",
+    "google-translate": "^3.0.0",
+    "ksoft.js": "^3.1.4",
+    "mathjs": "^6.5.0",
+    "ms": "^2.1.2",
+    "node-fetch": "^2.6.0",
+    "random-puppy": "^1.1.0",
+    "relevant-urban": "^2.0.0",
+    "rss-parser": "^3.7.3",
+    "strict-uri-encode": "^2.0.0",
+    "string-similarity": "^4.0.1",
+    "util": "^0.12.1",
+    "weather-js": "^2.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "no test command"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/phamleduy04/agentbot.git"
+  },
+  "author": "Duy Pham",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/phamleduy04/agentbot/issues"
+  },
+  "homepage": "https://github.com/phamleduy04/agentbot#readme"
+}
