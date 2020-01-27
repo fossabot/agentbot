@@ -1,5 +1,6 @@
 # agentbot
-modules need to install:
+npm i to install all packages
+modules need to install
 # discord.js
 # random-puppy
 # common-tags
