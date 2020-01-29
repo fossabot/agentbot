@@ -18,11 +18,11 @@ module.exports = {
             let msg = await channel.send(embed);
             await msg.react('✅');
             await msg.react('❌');
-    
             message.delete({timeout: 1000});
+            message.channel.send(`Đã tạo poll!`)
         }else{
             message.delete({timeout:1000})
-            return message.reply("Code này dành cho admin và mod").then(m=>m.delete(1000))
+            return message.reply("Code này dành cho admin và mod").then(m=>m.delete(5000))
         }
 
     }

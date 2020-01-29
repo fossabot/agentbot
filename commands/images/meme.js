@@ -1,21 +1,20 @@
 const { RichEmbed } = require("discord.js");
-const randomPuppy = require("random-puppy");
+const { KSoftClient } = require('ksoft.js');
+var { ksoft_key } = require('../../apikey.json')
+const ksoft = new KSoftClient(ksoft_key);
 
 module.exports = {
     name: "meme",
     category: "images",
     description: "Sends an epic meme",
     run: async (client, message, args) => {
-        const subReddits = ["dankmeme", "meme", "me_irl","torridmemes","MemeEconomy"];
-        const random = subReddits[Math.floor(Math.random() * subReddits.length)];
-
-        const img = await randomPuppy(random);
+        const res = await ksoft.images.meme();
         const embed = new RichEmbed()
+            .setTitle(`Meme from ${res.post.subreddit}`)
             .setColor("RANDOM")
-            .setImage(img)
-            .setTitle(`From /r/${random}`)
-            .setURL(`https://reddit.com/r/${random}`);
-
+            .setImage(res.url)
+            .setURL(res.post.link)
+            .setFooter(`Upvote: ${res.post.upvotes}. Downvote: ${res.post.downvotes}`)
         message.channel.send(embed);
     }
 }

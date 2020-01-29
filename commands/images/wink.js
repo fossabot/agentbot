@@ -10,7 +10,7 @@ module.exports = {
         getJSON(url, function(error,response){
             if (error) return message.channel.send('Bot gặp lỗi trong khi lấy hình, vui lòng thử lại sau')
             const embed = new RichEmbed()
-            .setDescription(`<@${message.member.id}> vừa mới nháy mắt với ai đó 🤷‍♂️`)
+            .setDescription(`${message.member} vừa mới nháy mắt với ai đó 🤷‍♂️`)
             .setImage(response.link)
             .setFooter(`By AgentBot đẹp trai`)
         return message.channel.send(embed)

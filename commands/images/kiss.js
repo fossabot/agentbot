@@ -11,12 +11,11 @@ module.exports = {
         getJSON(url, function(error,response){
             if (error) return message.channel.send('Bot gặp lỗi trong khi lấy hình, vui lòng thử lại sau')
         let person = message.mentions.members.first() || message.guild.members.get(args[0]);
-        if (!args[0] || (!person)){
-            return message.reply(`Mày đéo thể tự kiss chính mình được nhé địt mẹ :) `)
+        if (!person){
+            return message.reply(`Đéo tag ai sao mà kiss`)
         } else {
-
             const embed = new RichEmbed()
-                .setDescription(`<@${message.member.id}> đã thơm <@${person.id}> vài cái =))) 💋`)
+                .setDescription(`${message.member} đã thơm ${person} vài cái =))) 💋`)
                 .setImage(response.data.images.original.url)
                 .setFooter(`By AgentBot đẹp trai`)
             return message.channel.send(embed)

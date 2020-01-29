@@ -12,7 +12,6 @@ module.exports = {
         if (message.author.id=== person.id)
             return message.reply("Có thờ có thiêng có duyên chết liền. Cầu cho người khác chứ cầu cho mình hoài vậy.");
 
-        message.channel.send(`🙏 ${message.member.displayName} prays for ${person.displayName}`);
-        message.channel.send(`Wish you the best of luck!`)
+        message.channel.send(`🙏 ${message.member.displayName} prays for ${person.displayName} \n Wish you the best of luck!`);
     }
 }

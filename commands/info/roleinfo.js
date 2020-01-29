@@ -12,6 +12,9 @@ module.exports = {
         var matches = stringSimilarity.findBestMatch(search, roles[0])
         var find = matches.bestMatch.target
         var role = message.guild.roles.find(role => role.name === find)
+        if (!isNaN(args[0])) {
+            var role = message.guild.roles.get(args[0])
+        }
         let membersWithRole = message.guild.roles.get(role.id).members;
         const embed = new RichEmbed()
             .setColor(role.color)

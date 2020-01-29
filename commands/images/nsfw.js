@@ -11,9 +11,9 @@ module.exports = {
         if(!message.channel.nsfw){
             message.channel.send("Chỉ xài ở phòng nsfw, mày xài phòng khác discord nó xoá server tao thì tao ăn cám à.");
         } else {
-        const  respond  = await ksoft.images.nsfw();
+        const respond = await ksoft.images.nsfw();
         const embed = new RichEmbed()
-            .setFooter(`Click here to download!`)
+            .setTitle(`Click here to download!`)
             .setDescription(`NSFW image:`)
             .setURL(respond.url)
             .setFooter(`Get by AgentBot`)

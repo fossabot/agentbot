@@ -6,7 +6,7 @@ module.exports = {
     usage: "_setnick <tag> [nickname]",
     note: "nickname bỏ trống = reset nickname",
     run: async (client, message, args) => {
-        if (!message.guild.me.hasPermission('MANAGE_NICKNAMES')) {
+        if (!message.member.hasPermission('MANAGE_NICKNAMES')) {
             return message.reply(`Địt mẹ mày không có quyền đổi mà kêu tao đổi tao vả chết mẹ giờ`);
         }
         let user = message.mentions.members.first() || message.guild.members.get(args[0])

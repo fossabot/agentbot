@@ -15,3 +15,4 @@ ms
 ksoft.js
 string-similarity
 google-translate
+weather-js

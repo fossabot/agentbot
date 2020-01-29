@@ -1,3 +1,4 @@
+const { RichEmbed } = require('discord.js')
 module.exports = {
     name: "avatar",
     category: "info",
@@ -5,10 +6,20 @@ module.exports = {
     usage: "_avatar <tag>",
     run: (client, message, args) => {
     var member = message.mentions.members.first() || message.guild.members.get(args[0]);
-        if (!args[0]){
-            message.channel.send(message.author.avatarURL)
+        if (!member){
+            const embed = new RichEmbed()
+                .setTitle(`Link avatar: `)
+                .setURL(message.author.avatarURL)
+                .setImage(message.author.avatarURL)
+                .setFooter(`Bot by phamleduy04#9999`)
+            message.channel.send(embed)
         } else {
-            message.channel.send(member.user.displayAvatarURL)
+            const embed = new RichEmbed()
+                .setTitle(`Link avatar: `)
+                .setURL(member.user.displayAvatarURL)
+                .setImage(member.user.displayAvatarURL)
+                .setFooter(`Bot by phamleduy04#9999`)
+            message.channel.send(embed)
         }
     }
 }

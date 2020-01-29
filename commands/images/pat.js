@@ -8,20 +8,18 @@ module.exports = {
     run: (client, message, args) => {
         let url = `https://some-random-api.ml/animu/pat`
         getJSON(url, function(error,response){
+        let nguoitag = message.mentions.members.array()
         if (!error) {
-            if (!args[0]){
+            if (nguoitag.length == 0){
                 const embed1 = new RichEmbed()
                     .setDescription(`${message.member.displayName} vỗ về đã tất cả mọi người <3`)
                     .setImage(response.link)
                     .setFooter(`By AgentBot đẹp trai`)
                 return message.channel.send(embed1)
             }
-            let person = message.mentions.members.first() || message.guild.members.get(args[0]);
-            if (!person){
-                return message.reply("Mày tag ai mà sao tao tìm đéo ra :)) ").then(m => m.delete(5000))
-            } else {
+            else {
                 const embed = new RichEmbed()
-                    .setDescription(`Awwww, <@${message.member.id}> đã vỗ về <@${person.id}> <3`)
+                    .setDescription(`Awwww, ${message.member} đã vỗ về ${nguoitag} <3`)
                     .setImage(response.link)
                     .setFooter(`By AgentBot đẹp trai`)
                 return message.channel.send(embed)
