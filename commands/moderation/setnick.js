@@ -10,7 +10,7 @@ module.exports = {
             return message.reply(`Địt mẹ mày không có quyền đổi mà kêu tao đổi tao vả chết mẹ giờ`);
         }
         let user = message.mentions.members.first() || message.guild.members.get(args[0])
-        var output = args[1]
+        var output = args.slice(1).join(' ')
         if (!args[0]) return message.reply(`Mày không tag tao đổi tên bằng niềm`)
         if (!output) var output = user.user.username
         let nickname = args.slice(1).join(' ')
