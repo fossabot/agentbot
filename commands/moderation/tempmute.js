@@ -18,12 +18,13 @@ module.exports = {
     let reason = args.slice(2).join(" ");
     // Mute the user
     member.addRole(mutedRole)
+    message.channel.send(`Đã khoá mõm **${member.user.tag}** với thời gian ${args[1]}`)
     const embed = new RichEmbed()
       .setColor("RANDOM")
       .setDescription("Khoá mõm command")
       .addField('Người bị khoá mõm: ',member,true)
       .addField('Người khoá mõm: ',message.author,true)
-      .addField('Khoá mõm trong: ', time,true)
+      .addField('Khoá mõm trong: ', args[1],true)
       .addField('Lý do khoá mõm: ',reason,true)
     logChannel.send(embed);
   
