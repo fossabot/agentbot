@@ -2,7 +2,7 @@ const { RichEmbed } = require("discord.js");
 const { getMember } = require("../../functions.js");
 
 module.exports = {
-    name: "love",
+    name: "tlove",
     category: "fun",
     description: "Calculates the love affinity you have for another person.",
     usage: "[mention | id | username]",
@@ -12,7 +12,7 @@ module.exports = {
 
         if (!person || message.author.id === person.id) {
             person = message.guild.members
-                .filter(m => m.id !== message.author.id)
+                .filter(m => m.id !== message.author.id && !m.user.bot)
                 .random();
         }
         if (message.author.id=== person.id)
