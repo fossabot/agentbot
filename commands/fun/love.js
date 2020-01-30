@@ -2,7 +2,7 @@ const { RichEmbed } = require("discord.js");
 const { getMember } = require("../../functions.js");
 
 module.exports = {
-    name: "tlove",
+    name: "love",
     category: "fun",
     description: "Calculates the love affinity you have for another person.",
     usage: "[mention | id | username]",
