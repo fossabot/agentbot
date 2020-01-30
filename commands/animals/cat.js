@@ -12,7 +12,7 @@ module.exports = {
             .setTitle(`Cat pics/videos :D`)
             .setURL(response.file)
             .setImage(response.file)
-            .setFooter(`Click the title to view/download`)
+            .setFooter(`Bot made by phamleduy04#9999`)
         message.channel.send(embed)
         });
     }

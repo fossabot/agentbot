@@ -11,9 +11,10 @@ module.exports = {
         getJSON(url, function(error,response){
             if (error) return message.channel.send('Bot gặp lỗi trong khi lấy hình, vui lòng thử lại sau')
             const embed = new RichEmbed()
-            .setDescription(`Otter Gifs :D`)
+            .setTitle(`Otter Gifs :D`)
             .setImage(response.data.images.original.url)
-            .setFooter(`By AgentBot đẹp trai`)
+            .setURL(response.data.images.original.url)
+            .setFooter(`Bot made by phamleduy04#9999`)
         return message.channel.send(embed)
         });
     }
