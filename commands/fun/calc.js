@@ -3,7 +3,7 @@ var {wolfarm_key} = require('../../apikey.json')
 var getJSON = require('get-json')
 const { RichEmbed } = require('discord.js')
 module.exports = {
-    name: "tcalc",
+    name: "calc",
     category: "fun",
     description: "Tính toán và sẽ đưa ra các bước giải",
     usage:"_calc <query>",
