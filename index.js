@@ -34,10 +34,6 @@ client.on("ready", () => {
 
 client.on("message", async message => {
     const prefix = "_";
-    if(blacklist.indexOf(message.author.id) > -1){
-        return message.reply(`Bạn đã ở trong blacklist, bạn không thể sử dụng lệnh của bot.`)
-    } else {
-
         if (message.author.bot) return;
         if (!message.guild) return;
         if (!message.content.startsWith(prefix)) return;
@@ -52,7 +48,10 @@ client.on("message", async message => {
         if (!command) command = client.commands.get(client.aliases.get(cmd));
 
         if (command) 
-            command.run(client, message, args);
+            if(blacklist.indexOf(message.author.id) > -1){
+                return message.reply(`Bạn đã ở trong blacklist, bạn không thể sử dụng lệnh của bot.`)
+            } else {
+                command.run(client, message, args);
     }
 });
 //console chat
