@@ -2,7 +2,7 @@ const { Client, Collection } = require("discord.js");
 const { config } = require("dotenv");
 const fs = require("fs");
 var blacklist = fs.readFileSync('blacklist.txt','utf8').split('\n')
-
+var whitelist_cmd = ["removeblacklist","rbl","blacklistremove"]
 const client = new Client({
     disableEveryone: true
 });
@@ -49,7 +49,12 @@ client.on("message", async message => {
 
         if (command) 
             if(blacklist.indexOf(message.author.id) > -1){
+                if (whitelist_cmd.indexOf(cmd)){
+                    await message.channel.send(`Chuẩn bị xoá blacklist.....`)
+                    command.run(client, message, args);
+                } else {
                 return message.reply(`Bạn đã ở trong blacklist, bạn không thể sử dụng lệnh của bot.`)
+                }
             } else {
                 command.run(client, message, args);
     }
