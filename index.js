@@ -1,9 +1,10 @@
 const { Client, Collection } = require("discord.js");
 const { config } = require("dotenv");
 const fs = require("fs");
+var blacklist = fs.readFileSync('blacklist.txt','utf8').split('\n')
 
 const client = new Client({
-    disableEveryone: false
+    disableEveryone: true
 });
 
 client.commands = new Collection();
@@ -33,22 +34,26 @@ client.on("ready", () => {
 
 client.on("message", async message => {
     const prefix = "_";
+    if(blacklist.indexOf(message.author.id) > -1){
+        return message.reply(`Bạn đã ở trong blacklist, bạn không thể sử dụng lệnh của bot.`)
+    } else {
 
-    if (message.author.bot) return;
-    if (!message.guild) return;
-    if (!message.content.startsWith(prefix)) return;
-    if (!message.member) message.member = await message.guild.fetchMember(message);
+        if (message.author.bot) return;
+        if (!message.guild) return;
+        if (!message.content.startsWith(prefix)) return;
+        if (!message.member) message.member = await message.guild.fetchMember(message);
 
-    const args = message.content.slice(prefix.length).trim().split(/ +/g);
-    const cmd = args.shift().toLowerCase();
-    
-    if (cmd.length === 0) return;
-    
-    let command = client.commands.get(cmd);
-    if (!command) command = client.commands.get(client.aliases.get(cmd));
+        const args = message.content.slice(prefix.length).trim().split(/ +/g);
+        const cmd = args.shift().toLowerCase();
+        
+        if (cmd.length === 0) return;
+        
+        let command = client.commands.get(cmd);
+        if (!command) command = client.commands.get(client.aliases.get(cmd));
 
-    if (command) 
-        command.run(client, message, args);
+        if (command) 
+            command.run(client, message, args);
+    }
 });
 //console chat
 let y = process.openStdin()
