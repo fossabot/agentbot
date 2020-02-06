@@ -49,7 +49,7 @@ client.on("message", async message => {
 
         if (command) 
             if(blacklist.indexOf(message.author.id) > -1){
-                if (whitelist_cmd.indexOf(cmd)){
+                if (whitelist_cmd.indexOf(cmd) > -1){
                     await message.channel.send(`Chuẩn bị xoá blacklist.....`)
                     command.run(client, message, args);
                 } else {
