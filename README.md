@@ -1,20 +1,8 @@
 # agentbot
-npm i to install all packages
-# discord.js
-# random-puppy
-# common-tags
-# node-fetch
-# fs
-# ascii-table
-# dotenv
-# get-json
-# relevant-urban
-# dateformat
-# strict-uri-encode
-# mathjs
-# util
-# ms
-# ksoft.js
-# string-similarity
-# google-translate
-# weather-js
+## To install all packages use:
+
+```npm i```
+
+## To run the bot please use:
+
+```nodemon -e js,json,txt```
