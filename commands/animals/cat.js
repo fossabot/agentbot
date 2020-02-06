@@ -8,12 +8,17 @@ module.exports = {
     run: (client, message, args) => {
         let url = `http://aws.random.cat/meow`
         getJSON(url, function(error,response){
-        const embed = new RichEmbed()
-            .setTitle(`Cat pics/videos :D`)
-            .setURL(response.file)
-            .setImage(response.file)
-            .setFooter(`Bot made by phamleduy04#9999`)
-        message.channel.send(embed)
+            if(!error){
+                const embed = new RichEmbed()
+                    .setTitle(`Cat pics/videos :D`)
+                    .setURL(response.file)
+                    .setImage(response.file)
+                    .setFooter(`Bot made by phamleduy04#9999`)
+                message.channel.send(embed)
+            } else {
+                message.channel.send(`Bot lỗi trong khi lấy hình, vui lòng thử lại sau.`)
+            }
+      
         });
     }
 }

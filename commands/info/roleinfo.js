@@ -7,7 +7,7 @@ module.exports = {
     description: "Trà về thông tên về role",
     run: async (client, message, args) => {
         let roles = [];
-        roles.push(message.guild.roles.map(g => g.name))
+        roles.push(message.guild.roles.filter(r => r.managed === false).map(g => g.name))
         var search = args.join(' ');
         var matches = stringSimilarity.findBestMatch(search, roles[0])
         var find = matches.bestMatch.target

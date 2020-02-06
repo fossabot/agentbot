@@ -4,8 +4,8 @@ const { getMember } = require("../../functions.js");
 module.exports = {
     name: "love",
     category: "fun",
-    description: "Calculates the love affinity you have for another person.",
-    usage: "[mention | id | username]",
+    description: "Người khác yêu bạn cỡ nào?",
+    usage: "_love [mention or id or username]",
     run: async (client, message, args) => {
         // Get a member from mention, id, or username
         let person = getMember(message, args[0]);

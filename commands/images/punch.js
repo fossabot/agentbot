@@ -9,7 +9,7 @@ module.exports = {
     run: (client, message, args) => {
         let url = `https://api.giphy.com/v1/gifs/random?api_key=${giphy_key}&tag=punch&rating=R`
         getJSON(url, function(error,response){
-        let nguoitag = message.mentions.members.array()
+        let nguoitag = message.mentions.members.array() || message.guild.members.get(args[0])
         if (nguoitag.length == 0){
             const embed1 = new RichEmbed()
                 .setDescription(`${message.member} đã tự đấm chính mình 👊`)

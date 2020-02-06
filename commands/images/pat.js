@@ -8,7 +8,7 @@ module.exports = {
     run: (client, message, args) => {
         let url = `https://some-random-api.ml/animu/pat`
         getJSON(url, function(error,response){
-        let nguoitag = message.mentions.members.array()
+        let nguoitag = message.mentions.members.array() || message.guild.members.get(args[0])
         if (!error) {
             if (nguoitag.length == 0){
                 const embed1 = new RichEmbed()

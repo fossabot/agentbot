@@ -10,8 +10,8 @@ module.exports = {
         let url = `https://api.giphy.com/v1/gifs/random?api_key=${giphy_key}&tag=slap&rating=R`
         getJSON(url, function(error,response){
             if (error) return message.reply("Bot lỗi trong quá trình lấy hình ảnh, vui lòng thử lại sau.")
-        let nguoitag = message.mentions.members.array()
-        if (nguoitag.length == 0 || (message.author.id == "533435912982626306")){
+        let nguoitag = message.mentions.members.array() || message.guild.members.get(args[0])
+        if (nguoitag.length == 0){
             const embed1 = new RichEmbed()
                 .setDescription(`${message.member} đã tự vả chính mình 🤚`)
                 .setImage(response.data.images.original.url)

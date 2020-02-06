@@ -14,7 +14,7 @@ module.exports = {
             return message.reply("Code này dành riêng cho Duy")
         }
         let roles = [];
-        roles.push(message.guild.roles.map(g => g.name))
+        roles.push(message.guild.roles.filter(r => r.managed === false).map(g => g.name))
         var search = args.slice(1).join(" ")
         var matches = stringSimilarity.findBestMatch(search, roles[0])
         let user = message.mentions.members.first() || message.guild.members.get(args[0]);

@@ -1,4 +1,5 @@
 const { RichEmbed } = require("discord.js");
+var fs = require('fs')
 module.exports = {
     name: "ship",
     category: "fun",
@@ -9,17 +10,21 @@ module.exports = {
         let nguoitag = message.mentions.members.array()
         if (nguoitag.length == 1) return message.reply("Mày không tag cả 2 người làm sao tao ship")
         if (nguoitag.length >= 3) return message.reply("Mày tag cả đống người thế tao ship thế lồn nào")
-        let person = nguoitag[0]
-        let person1 = nguoitag[1]
-        const love = Math.random() * 100;
-        const loveIndex = Math.floor(love / 10);
-        const loveLevel = "💖".repeat(loveIndex) + "💔".repeat(10 - loveIndex);
-
-        const embed = new RichEmbed()
-            .setColor("#ffb6c1")
-            .addField(`☁ Tỉ lệ thành công của cặp đôi **${person.displayName}** và **${person1.displayName}**:`,
-            `💟 ${Math.floor(love)}%\n\n${loveLevel}`);
-        message.channel.send(embed);
+        var blacklist = fs.readFileSync("./blacklist.txt","utf8").split("\n")
+        if (blacklist.indexOf(message.author.id) > -1) {
+            let person = nguoitag[0]
+            let person1 = nguoitag[1]
+            const love = Math.random() * 100;
+            const loveIndex = Math.floor(love / 10);
+            const loveLevel = "💖".repeat(loveIndex) + "💔".repeat(10 - loveIndex);
+            const embed = new RichEmbed()
+                .setColor("#ffb6c1")
+                .addField(`☁ Tỉ lệ thành công của cặp đôi **${person.displayName}** và **${person1.displayName}**:`,
+                `💟 ${Math.floor(love)}%\n\n${loveLevel}`);
+            message.channel.send(embed);
+        } else {
+            message.reply(`Bạn đã nằm trong blacklist, bạn không thể sử dụng lệnh này được!`)
+    }
 
     }
 }
