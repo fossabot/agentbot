@@ -14,7 +14,7 @@ module.exports = {
         if (check.indexOf(blacklist_member.user.id) > -1){
             return message.channel.send(`Bạn **${blacklist_member.user.tag}** đã có trong blacklist!`)
         } else {
-            await message.channel.send(`Đã add **${blacklist_member.user.tag}** vào danh sách đen. Đang khởi động lại bot...........`)
+            await message.channel.send(`⛔ Đã add **${blacklist_member.user.tag}** vào danh sách đen. Đang khởi động lại bot...........`)
             fs.appendFileSync('./blacklist.txt',`\n${blacklist_member.id}`)      
         }
     }

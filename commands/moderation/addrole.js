@@ -23,6 +23,6 @@ module.exports = {
             return message.reply("Đéo tìm thấy người mày tag, chắc là mày ngu hoặc là tao ngu.")
 
         message.guild.member(user).addRole(role).catch(err => message.channel.send(err.message));
-        message.channel.send(`✅ Đã add role **${role.name}**`)
+        message.channel.send(`✅ ➕ Đã add role **${role.name}** cho **${user.user.tag}**`)
     }
 }
