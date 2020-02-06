@@ -13,8 +13,8 @@ module.exports = {
         if (check.indexOf(blacklist_member.user.id) > -1){
             var pos = check.indexOf(blacklist_member.user.id)
             if (pos !== -1) check.splice(pos,1);
+            await message.channel.send(`Đã xoá **${blacklist_member.user.tag}** ra khỏi blacklist! Đang khởi động lại bot.`)
             fs.writeFileSync('./blacklist.txt',check)
-            message.channel.send(`Đã xoá **${blacklist_member.user.tag}** ra khỏi blacklist! Đang khởi động lại bot.`)
         } else {
            return message.channel.send(`Bạn **${blacklist_member.user.tag}** không có trong blacklist!`)
         }
