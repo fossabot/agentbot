@@ -7,7 +7,7 @@ module.exports = {
     usage:"_removeblacklist <@tag>",
     run: async (client, message, args) => {
         if (message.author.id !== "455935236262592512") return message.channel.send(`Command dành riêng cho Dui`)
-        if(!args[0]) return message.reply(`Mày đéo tag sao tao add vô blacklist?`)
+        if(!args[0]) return message.reply(`Mày đéo tag sao tao xoá blacklist?`)
         let blacklist_member = message.mentions.members.first() || message.guild.members.get(args[0]);
         var check = fs.readFileSync('./blacklist.txt','utf8').split('\n')
         var pos = check.indexOf(blacklist_member.user.id)
