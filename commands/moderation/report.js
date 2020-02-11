@@ -21,7 +21,7 @@ module.exports = {
             return message.channel.send("Please provide a reason for the report").then(m => m.delete(5000));
         
         const channel = client.channels.get("664007055278997514")
-        const admin_log = client.channels.get('663985297259888670')
+        const admin_log = client.channels.get('676833340950839317')
             
         if (!channel)
             return message.channel.send("Couldn't find a `#report` channel").then(m => m.delete(5000));
@@ -32,6 +32,7 @@ module.exports = {
             .setFooter(message.guild.name, message.guild.iconURL)
             .setAuthor("Reported member", rMember.user.displayAvatarURL)
             .setDescription(stripIndents`**- Member:** ${rMember} (${rMember.user.id})
+            **- Tag:** ${rMember.user.tag}
             **- Reported in:** ${message.channel}
             **- Reason:** ${args.slice(1).join(" ")}`);
         channel.send(embed);
