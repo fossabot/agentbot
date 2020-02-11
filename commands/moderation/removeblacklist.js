@@ -10,12 +10,10 @@ module.exports = {
         if(!args[0]) return message.reply(`Mày đéo tag sao tao add vô blacklist?`)
         let blacklist_member = message.mentions.members.first() || message.guild.members.get(args[0]);
         var check = fs.readFileSync('./blacklist.txt','utf8').split('\n')
-        console.log(check)
         var pos = check.indexOf(blacklist_member.user.id)
         if (pos > -1){
             check.splice(pos,1);
             let write = check.join('\n')
-            console.log(write)
             await message.channel.send(`Đã xoá **${blacklist_member.user.tag}** ra khỏi blacklist! Đang khởi động lại bot.`)
             fs.writeFileSync('./blacklist.txt',write)
         } else {
