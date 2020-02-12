@@ -2,7 +2,7 @@ var request = require('request')
 const {RichEmbed} = require('discord.js')
 const url = 'https://en.wikipedia.org/api/rest_v1/page/html/2019%E2%80%9320_Wuhan_coronavirus_outbreak_by_country_and_territory?stash=true'
 module.exports = {
-    name: "tcorona",
+    name: "corona",
     category: "info",
     description: "Thông tin về coronavirus",
     usage: "_corona",
