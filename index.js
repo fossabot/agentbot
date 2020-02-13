@@ -33,7 +33,7 @@ client.on("ready", () => {
 });
 
 client.on("message", async message => {
-    if(message.content.toLowerCase().includes('=avatar') == true) return message.reply(`Bạn đã thử sử dụng lệnh \`_avatar\` chưa?`)
+    if(message.content.toLowerCase().startsWith('=avatar') == true) return message.reply(`Bạn đã thử sử dụng lệnh \`_avatar\` chưa?`)
     const prefix = "_";
         if (message.author.bot) return;
         if (!message.guild) return;
