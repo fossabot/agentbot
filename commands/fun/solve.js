@@ -13,7 +13,6 @@ module.exports = {
         getJSON(url, function(error, response){
             if (error) return message.channel.send(`Bot lỗi khi đang làm việc, vui lòng thử lại sau.`)
             if (response.queryresult.success == false) return message.reply(`Input ncc, tao tìm không ra câu trả lời.`)
-            console.log(response)
             var output = response.queryresult.pods[1].subpods[1]
             const embed = new RichEmbed()
                 .setAuthor(`Agent Bot`)
