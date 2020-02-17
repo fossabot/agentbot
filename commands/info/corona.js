@@ -2,12 +2,14 @@ var request = require('request')
 const {RichEmbed} = require('discord.js')
 const url = 'https://quohat.pythonanywhere.com'
 const US_url = 'https://www.cdc.gov/coronavirus/2019-ncov/cases-in-us.html'
+const VN_url = 'https://corona-api.kompa.ai/graphql'
+const graphql = require('graphql-request');
 module.exports = {
     name: "corona",
     category: "info",
     description: "Thông tin về coronavirus",
     usage: " `\_corona`\ ",
-    note: "Sử dụng `\_corona US`\ để xem thông tin dành riêng cho US ",
+    note: "Sử dụng `\_corona US(VN)`\ để xem thông tin dành riêng cho US,VN ",
     run: async (client, message, args) => {
         if (args[0].toLowerCase() == "us"){
             request(US_url, function (error, response, request){
@@ -28,9 +30,30 @@ module.exports = {
                     .addField(`Negative: `,`${neg} cases`)
                     .addField(`Pending: (Includes specimens received and awaiting testing)`,`${pending} cases`)
                     .addField(`Total: `,`${total} cases`)
-                    .setFooter(`Source: https://www.cdc.gov/`)
+                    .setFooter(`Source: https://www.cdc.gov/ | Made by phamleduy04#9999`)
                 message.channel.send(us_corona)
             })
+        } else if (args[0].toLowerCase() == "vn"){
+            const query = `query countries {
+                countries {
+                    Country_Region
+                    Confirmed
+                    Deaths
+                    Recovered 
+                }
+            }`
+            graphql.request(VN_url,query)
+                .then(data => {
+                    let vietnam = data.countries[1]
+                    const vn_embed = new RichEmbed()
+                        .setAuthor(`Thông tin sử dụng thời gian thực!`)
+                        .setTitle(`Số ca nhiễm COVID-19 ở Việt Nam`)
+                        .addField(`Số ca đẵ xác nhận: `,`${vietnam.Confirmed} ca`)
+                        .addField(`Số ca tử vong: `,`${vietnam.Deaths} ca`)
+                        .addField(`Số ca đã hồi phục: `,`${vietnam.Recovered} ca`)
+                        .setFooter(`Nguồn: corona.kompa.ai | Made by phamleduy04#9999 `)
+                    message.channel.send(vn_embed)
+                })
         } else {
             request(url, function (error, response, request){
                 if (error) return message.channel.send(`Bot lỗi, status code: ${response && response.statusCode}`)
