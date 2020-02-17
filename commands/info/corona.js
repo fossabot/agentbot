@@ -11,7 +11,23 @@ module.exports = {
     usage: " `\_corona`\ ",
     note: "Sử dụng `\_corona US(VN)`\ để xem thông tin dành riêng cho US,VN ",
     run: async (client, message, args) => {
-        if (args[0].toLowerCase() == "us"){
+        if (!args[0]){
+            request(url, function (error, response, request){
+                if (error) return message.channel.send(`Bot lỗi, status code: ${response && response.statusCode}`)
+                var ketqua = request.split(' ')
+                var xacnhan = ketqua[0]
+                var die = ketqua[1]
+                var recoveries= ketqua[2]
+                const embed = new RichEmbed()
+                    .setAuthor(`Lưu ý: Thông tin cập nhật về bot không phải thời gian thực!`)
+                    .setTitle(`Thông tin về virus Corona aka nCoV`)
+                    .addField(`Số lượng ca nhiễm: `,`${xacnhan} ca`)
+                    .addField(`Số người chết: `,`${die} người`)
+                    .addField(`Số người bình phục: `,`${recoveries} người`)
+                    .setFooter(`Nguồn: Wikipedia. Made by phamleduy04#9999`)
+                message.channel.send(embed)         
+            })
+        } else if (args[0].toLowerCase() == "us"){
             request(US_url, function (error, response, request){
                 if (error) return message.channel.send(`Bot lỗi, status code: ${response && response.statusCode}`)
                 var begin = request.indexOf('<table class="table table-striped table-bordered">')
@@ -55,22 +71,7 @@ module.exports = {
                     message.channel.send(vn_embed)
                 })
         } else {
-            request(url, function (error, response, request){
-                if (error) return message.channel.send(`Bot lỗi, status code: ${response && response.statusCode}`)
-                var ketqua = request.split(' ')
-                var xacnhan = ketqua[0]
-                var die = ketqua[1]
-                var recoveries= ketqua[2]
-                const embed = new RichEmbed()
-                    .setAuthor(`Lưu ý: Thông tin cập nhật về bot không phải thời gian thực!`)
-                    .setTitle(`Thông tin về virus Corona aka nCoV`)
-                    .addField(`Số lượng ca nhiễm: `,`${xacnhan} ca`)
-                    .addField(`Số người chết: `,`${die} người`)
-                    .addField(`Số người bình phục: `,`${recoveries} người`)
-                    .setFooter(`Nguồn: Wikipedia. Made by phamleduy04#9999`)
-                message.channel.send(embed)         
-         
-        })
-    }
+            message.channel.send(`Đất nước bạn đang tìm kiếm bot chưa hỗ trợ, hãy quay lại sau nhé!`)
+        }
     }
 }
