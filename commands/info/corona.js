@@ -60,15 +60,18 @@ module.exports = {
             }`
             graphql.request(VN_url,query)
                 .then(data => {
-                    let vietnam = data.countries[1]
-                    const vn_embed = new RichEmbed()
-                        .setAuthor(`Thông tin sử dụng thời gian thực!`)
-                        .setTitle(`Số ca nhiễm COVID-19 ở Việt Nam`)
-                        .addField(`Số ca đẵ xác nhận: `,`${vietnam.Confirmed} ca`)
-                        .addField(`Số ca tử vong: `,`${vietnam.Deaths} ca`)
-                        .addField(`Số ca đã hồi phục: `,`${vietnam.Recovered} ca`)
-                        .setFooter(`Nguồn: corona.kompa.ai | Made by phamleduy04#9999 `)
-                    message.channel.send(vn_embed)
+                    data.countries.forEach(vietnam => {
+                        if(vietnam.Country_Region == 'Vietnam') {
+                            const vn_embed = new RichEmbed()
+                                .setAuthor(`Thông tin sử dụng thời gian thực!`)
+                                .setTitle(`Số ca nhiễm COVID-19 ở Việt Nam`)
+                                .addField(`Số ca đẵ xác nhận: `,`${vietnam.Confirmed} ca`)
+                                .addField(`Số ca tử vong: `,`${vietnam.Deaths} ca`)
+                                .addField(`Số ca đã hồi phục: `,`${vietnam.Recovered} ca`)
+                                .setFooter(`Nguồn: corona.kompa.ai | Made by phamleduy04#9999 `)
+                            message.channel.send(vn_embed)
+                        }
+                    });  
                 })
         } else {
             message.channel.send(`Đất nước bạn đang tìm kiếm bot chưa hỗ trợ, hãy quay lại sau nhé!`)
