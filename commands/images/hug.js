@@ -1,7 +1,7 @@
 const { RichEmbed } = require("discord.js");
 var getJSON = require("get-json");
 module.exports = {
-    name: "thug",
+    name: "hug",
     category: "images",
     description: "Hug someone :D ",
     usage:"_hug [@tag]",
