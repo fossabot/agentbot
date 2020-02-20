@@ -9,7 +9,6 @@ module.exports = {
         let url = `https://some-random-api.ml/animu/hug`
         let nguoitag = message.mentions.members.array() || message.guild.members.get(args[0])
         getJSON(url, function(error,response){
-            console.log(response)
             if(!error){
                 if (nguoitag.length == 0){
                     const embed1 = new RichEmbed()
