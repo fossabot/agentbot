@@ -1,20 +1,20 @@
 const request = require('request');
-const url = 'https://dankmemer.services/api/trigger'
+const url = 'https://dankmemer.services/api/shit'
 const fs = require('fs')
 const {auth_dankmemer} = require('../../config.json')
 module.exports = {
-    name: "trigger",
+    name: "shit",
     category: "images",
-    description: "Trigger",
-    usage: "_trigger <tag>",
+    description: "Shit images",
+    usage: "_shit <tag>",
     run: async (client, message, args) => {
         var tag = message.mentions.members.first() || message.guild.members.get(args[0])
         if (tag) {
-            var avaurl = tag.user.displayAvatarURL
+            var query = tag.user.username
         } else {
-            var avaurl = message.author.displayAvatarURL
+            var query = message.author.username
         }
-        let file = fs.createWriteStream(`./pics.gif`)
+        let file = fs.createWriteStream(`./pics.jpg`)
         await new Promise((resolve, reject) => {
             request({
                 uri: url,
@@ -22,7 +22,7 @@ module.exports = {
                 'Authorization': auth_dankmemer
                 },
                 qs: {
-                'avatar1': avaurl
+                'text': query
                 },
                 gzip: false
             })
@@ -37,7 +37,7 @@ module.exports = {
                 .catch(error => {
                     console.log(error)
                 })
-        message.channel.send({file:'./pics.gif'})
+        message.channel.send({file:'./pics.jpg'})
             
     }
     }
