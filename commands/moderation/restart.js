@@ -1,4 +1,4 @@
-const {discord_token} = require('../../apikey.json')
+const {discord_token} = require('../../config.json')
 module.exports = {
     name: "restart",
     category: "moderation",

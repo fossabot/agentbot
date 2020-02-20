@@ -1,5 +1,5 @@
 const encode = require('strict-uri-encode')
-var {wolfarm_key} = require('../../apikey.json')
+var {wolfarm_key} = require('../../config.json')
 var getJSON = require('get-json')
 const { RichEmbed } = require('discord.js')
 module.exports = {

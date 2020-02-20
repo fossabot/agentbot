@@ -13,9 +13,6 @@ module.exports = {
             return message.reply("Có thờ có thiêng có duyên chết liền. Cầu cho người khác chứ cầu cho mình hoài vậy.");
         } else {
             message.channel.send(`🙏 ${message.member.displayName} prays for ${person.displayName} \n Wish you the best of luck!`);
-        }
-
-
-        
+        }   
     }
 }

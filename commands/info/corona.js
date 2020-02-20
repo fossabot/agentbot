@@ -14,7 +14,7 @@ module.exports = {
     category: "info",
     description: "Thông tin về coronavirus",
     usage: " `\_corona`\ ",
-    note: "Sử dụng `\_corona US(VN)`\ để xem thông tin dành riêng cho US,VN ",
+    note: "Sử dụng `\_corona US(VN,Canada)`\ để xem thông tin dành riêng cho US,VN,CAN",
     run: async (client, message, args) => {
         if (!args[0]){
             graphql.request(url, query)

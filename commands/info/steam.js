@@ -2,7 +2,7 @@ const {RichEmbed} = require("discord.js")
 const fetch = require("node-fetch")
 const { stripIndents } = require("common-tags")
 const dateFormat = require("dateformat")
-var {steam_token} = require('../../apikey.json')
+var {steam_token} = require('../../config.json')
 module.exports = {
     name: "steam",
     category: "info",

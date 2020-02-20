@@ -1,6 +1,6 @@
 var getJSON = require("get-json")
 const { RichEmbed } = require("discord.js")
-var { giphy_key } = require("../../apikey.json")
+var { giphy_key } = require("../../config.json")
 module.exports = {
     name: "panda",
     category: "animals",

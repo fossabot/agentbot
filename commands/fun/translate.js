@@ -1,4 +1,4 @@
-var { google_translate_key } = require("../../apikey.json")
+var { google_translate_key } = require("../../config.json")
 var googleTranslate = require('google-translate')(google_translate_key)
 const { RichEmbed } = require("discord.js");
 module.exports = {

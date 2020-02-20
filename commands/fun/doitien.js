@@ -1,6 +1,6 @@
 const { KSoftClient } = require('ksoft.js');
 const { RichEmbed } = require('discord.js');
-var { ksoft_key } = require('../../apikey.json')
+var { ksoft_key } = require('../../config.json')
 const ksoft = new KSoftClient(ksoft_key);
 
 module.exports = {

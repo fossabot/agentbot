@@ -1,6 +1,6 @@
 const { RichEmbed } = require("discord.js");
 var getJSON = require("get-json");
-var { giphy_key } = require("../../apikey.json")
+var { giphy_key } = require("../../config.json")
 module.exports = {
     name: "punch",
     category: "images",

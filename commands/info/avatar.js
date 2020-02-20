@@ -16,16 +16,17 @@ module.exports = {
                 .setFooter(`Bot by phamleduy04#9999`)
             message.channel.send(embed)
             
-        } else {
-            let avaURL = member.user.displayAvatarURL
-            if (avaURL.includes('.gif')) avaURL = `${avaURL}?size=1024&f=.gif`
-            const embed = new RichEmbed()
-                .setTitle(`Link avatar: `)
-                .setURL(avaURL)
-                .setImage(avaURL)
-                .setFooter(`Bot by phamleduy04#9999`)
-            message.channel.send(embed)
-            
-        }
+        } else if (member.id == '455935236262592512') return message.reply(`Lấy avatar cc`) 
+            else {
+                let avaURL = member.user.displayAvatarURL
+                if (avaURL.includes('.gif')) avaURL = `${avaURL}?size=1024&f=.gif`
+                const embed = new RichEmbed()
+                    .setTitle(`Link avatar: `)
+                    .setURL(avaURL)
+                    .setImage(avaURL)
+                    .setFooter(`Bot by phamleduy04#9999`)
+                message.channel.send(embed)
+                
+            }
     }
 }
