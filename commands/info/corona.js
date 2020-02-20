@@ -1,7 +1,5 @@
-var request = require('request')
 const {RichEmbed} = require('discord.js')
 const url = 'https://corona-api.kompa.ai/graphql'
-const corona_url = 'https://quohat.pythonanywhere.com/'
 const graphql = require('graphql-request');
 const query = `query countries {
     countries {
@@ -12,27 +10,33 @@ const query = `query countries {
     }
 }`
 module.exports = {
-    name: "corona",
+    name: "tcorona",
     category: "info",
     description: "Thông tin về coronavirus",
     usage: " `\_corona`\ ",
     note: "Sử dụng `\_corona US(VN)`\ để xem thông tin dành riêng cho US,VN ",
     run: async (client, message, args) => {
         if (!args[0]){
-            request(corona_url, function(error, response, request){
-                if (error) return message.channel.send(`Bot lỗi, status code: ${response && response.statusCode}`)
-                var ketqua = request.split(' ')
-                var xacnhan = ketqua[0]
-                var die = ketqua[1]
-                var hoiphuc = ketqua[2]
-                const embed = new RichEmbed()
-                    .setAuthor(`Lưu ý: Thông tin cập nhật về bot không phải thời gian thực!`)
-                    .setTitle(`Thông tin về virus Corona aka nCoV`)
-                    .addField(`Số lượng ca nhiễm: `,`${xacnhan} ca`)
-                    .addField(`Số người chết: `,`${die} người`)
-                    .addField(`Số người hội phục: `,`${hoiphuc} người`)
-                    .setFooter(`Nguồn: Wikipedia. Made by phamleduy04#9999`)
-                message.channel.send(embed)
+            graphql.request(url, query)
+                .then(data => {
+                    var confirmed = 0;
+                    var die = 0;
+                    var recovered = 0;
+                    data.countries.forEach(count => {
+                        confirmed = confirmed + parseInt(count.Confirmed);
+                        die = die + parseInt(count.Deaths)
+                        recovered = recovered + parseInt(count.Recovered)
+                    });
+                    var confirmed = confirmed.toString().replace(/(-?\d+)(\d{3})/g, "$1,$2") //Thêm dấu phẩy sau 3 chữ số (75,748)
+                    var die = die.toString().replace(/(-?\d+)(\d{3})/g, "$1,$2")
+                    var recovered = recovered.toString().replace(/(-?\d+)(\d{3})/g, "$1,$2")
+                    const embed = new RichEmbed()
+                        .setTitle(`Thông tin về virus Corona (nCoV, COVID-19)`)
+                        .addField(`Số lượng ca nhiễm: `,`${confirmed} ca`)
+                        .addField(`Số người chết: `,`${die} người`)
+                        .addField(`Số người hội phục: `,`${recovered} người`)
+                        .setFooter(`Nguồn: corona.kompa.ai | Made by phamleduy04#9999\nThông tin cập nhật theo thời gian thực!`)
+                    message.channel.send(embed)
             })
         } else if (args[0].toLowerCase() == "us"){
             graphql.request(url,query)
@@ -45,7 +49,7 @@ module.exports = {
                         .addField(`Số ca đẵ xác nhận: `,`${us.Confirmed} ca`)
                         .addField(`Số ca tử vong: `,`${us.Deaths} ca`)
                         .addField(`Số ca đã hồi phục: `,`${us.Recovered} ca`)
-                        .setFooter(`Nguồn: corona.kompa.ai | Made by phamleduy04#9999 `)
+                        .setFooter(`Nguồn: corona.kompa.ai | Made by phamleduy04#9999`)
                     message.channel.send(us_embed)
                 })
         } else if (args[0].toLowerCase() == "vn" || args[0].toLowerCase() == "vietnam"){
