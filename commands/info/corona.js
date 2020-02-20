@@ -10,7 +10,7 @@ const query = `query countries {
     }
 }`
 module.exports = {
-    name: "tcorona",
+    name: "corona",
     category: "info",
     description: "Thông tin về coronavirus",
     usage: " `\_corona`\ ",
