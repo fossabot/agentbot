@@ -22,16 +22,15 @@ module.exports = {
             request(corona_url, function(error, response, request){
                 if (error) return message.channel.send(`Bot lỗi, status code: ${response && response.statusCode}`)
                 var ketqua = request.split(' ')
-                ketqua.splice(1,1)
-                var quocgia = ketqua[0]
-                var xacnhan = ketqua[1]
-                var die = ketqua[2]
+                var xacnhan = ketqua[0]
+                var die = ketqua[1]
+                var hoiphuc = ketqua[2]
                 const embed = new RichEmbed()
                     .setAuthor(`Lưu ý: Thông tin cập nhật về bot không phải thời gian thực!`)
                     .setTitle(`Thông tin về virus Corona aka nCoV`)
                     .addField(`Số lượng ca nhiễm: `,`${xacnhan} ca`)
                     .addField(`Số người chết: `,`${die} người`)
-                    .addField(`Số quốc gia có bệnh: `,`${quocgia} nước`)
+                    .addField(`Số người hội phục: `,`${hoiphuc} người`)
                     .setFooter(`Nguồn: Wikipedia. Made by phamleduy04#9999`)
                 message.channel.send(embed)
             })
