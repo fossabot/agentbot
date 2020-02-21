@@ -1,5 +1,5 @@
 const { readdirSync } = require("fs");
-
+var count = 0;
 const ascii = require("ascii-table");
 
 let table = new ascii("Commands");
@@ -13,6 +13,7 @@ module.exports = (client) => {
             let pull = require(`../commands/${dir}/${file}`);
     
             if (pull.name) {
+                count++;
                 client.commands.set(pull.name, pull);
                 table.addRow(file, '✅');
             } else {
@@ -25,4 +26,5 @@ module.exports = (client) => {
     });
     
     console.log(table.toString());
+    console.log(`${count} lệnh đã sẵn sàng hoạt động.`)
 }

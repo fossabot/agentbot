@@ -62,9 +62,11 @@ client.on("message", async message => {
 });
 //console chat
 let y = process.openStdin()
-y.addListener("data", res=> {
+y.addListener("data", res => {
     let x = res.toString().trim().split(/ +/g)
-    client.channels.get("663966227332333628").send(x.join(" "));
+    let send = x.join(' ')
+    if (send.length == 0) return console.log(`Đéo gởi được tin nhắn trống :)`)
+    client.channels.get("663966227332333628").send(send.join(" "));
 });
 //end console chat
 client.login(process.env.TOKEN);
