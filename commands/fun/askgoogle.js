@@ -9,7 +9,7 @@ module.exports = {
             return message.reply(`**Mày đéo nhập gì tao tìm bằng cu**`)
         } 
         let question = encode(args.join(' '));
-        let link = `https://lmgtfy.com/?q=${question}`;
+        let link = `http://letmegooglethat.com/?q=${question}`;
         message.channel.send(`**<${link}>**`)
     }
 }
