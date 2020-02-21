@@ -8,6 +8,11 @@ const query = `query countries {
         Deaths
         Recovered 
     }
+    provinces {
+        Confirmed
+        Deaths
+        Recovered
+    }
 }`
 module.exports = {
     name: "corona",
@@ -55,14 +60,23 @@ module.exports = {
         } else if (args[0].toLowerCase() == "vn" || args[0].toLowerCase() == "vietnam"){
             graphql.request(url,query)
                 .then(res => {
-                    var vietnam = res.countries.filter(find => find.Country_Region == "Vietnam")
-                    var vietnam = vietnam[0]
+                    var confirmed = 0;
+                    var die = 0;
+                    var recovered = 0;
+                    res.provinces.forEach(count => {
+                        confirmed = confirmed + parseInt(count.Confirmed);
+                        die = die + parseInt(count.Deaths)
+                        recovered = recovered + parseInt(count.Recovered)
+                    });
+                    var confirmed = confirmed.toString().replace(/(-?\d+)(\d{3})/g, "$1,$2") //Thêm dấu phẩy sau 3 chữ số (75,748)
+                    var die = die.toString().replace(/(-?\d+)(\d{3})/g, "$1,$2")
+                    var recovered = recovered.toString().replace(/(-?\d+)(\d{3})/g, "$1,$2")
                     const vn_embed = new RichEmbed()
                         .setAuthor(`Thông tin sử dụng thời gian thực!`)
                         .setTitle(`Số ca nhiễm COVID-19 ở Việt Nam`)
-                        .addField(`Số ca đẵ xác nhận: `,`${vietnam.Confirmed} ca`)
-                        .addField(`Số ca tử vong: `,`${vietnam.Deaths} ca`)
-                        .addField(`Số ca đã hồi phục: `,`${vietnam.Recovered} ca`)
+                        .addField(`Số ca đẵ xác nhận: `,`${confirmed} ca`)
+                        .addField(`Số ca tử vong: `,`${die} ca`)
+                        .addField(`Số ca đã hồi phục: `,`${recovered} ca`)
                         .setFooter(`Nguồn: corona.kompa.ai | Made by phamleduy04#9999 `)
                     message.channel.send(vn_embed)
                         })
