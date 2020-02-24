@@ -1,6 +1,7 @@
 const {RichEmbed} = require('discord.js')
 const url = 'https://corona-api.kompa.ai/graphql'
 const graphql = require('graphql-request');
+const korean_list = ['korean','kr','hanquoc','han']
 const query = `query countries {
     countries {
         Country_Region
@@ -80,7 +81,7 @@ module.exports = {
                         .setFooter(`Nguồn: corona.kompa.ai | Made by phamleduy04#9999 `)
                     message.channel.send(vn_embed)
                         })
-        } else if (args[0].toLowerCase() == "canada"|| args[0].toLowerCase() == "can"){
+        } else if (args[0].toLowerCase() == "canada" || args[0].toLowerCase() == "can"){
             graphql.request(url,query)
                 .then(res => {
                     var canada = res.countries.filter(find => find.Country_Region == "Canada")
@@ -94,6 +95,20 @@ module.exports = {
                         .setFooter(`Nguồn: corona.kompa.ai | Made by phamleduy04#9999 `)
                     message.channel.send(can_embed)
                 });
+        } else if (korean_list.indexOf(args[0].toLowerCase()) > -1){
+            graphql.request(url,query)
+                .then(res => {
+                    var korean = res.countries.filter(find => find.Country_Region == "South Korea")
+                    var korean = korean[0]
+                    const kr_embed = new RichEmbed()
+                        .setAuthor(`Thông tin sử dụng thời gian thực!`)
+                        .setTitle(`Số ca nhiễm COVID-19 ở Hàn Quốc`)
+                        .addField(`Số ca đẵ xác nhận: `,`${korean.Confirmed} ca`)
+                        .addField(`Số ca tử vong: `,`${korean.Deaths} ca`)
+                        .addField(`Số ca đã hồi phục: `,`${korean.Recovered} ca`)
+                        .setFooter(`Nguồn: corona.kompa.ai | Made by phamleduy04#9999`)
+                    message.channel.send(kr_embed)
+                })
         } else {
             message.channel.send(`Đất nước bạn đang tìm kiếm bot chưa hỗ trợ, hãy quay lại sau nhé!`)
         }
