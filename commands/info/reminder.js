@@ -5,27 +5,27 @@ module.exports = {
     name: "reminder",
     category: "info",
     description: "Reminder",
-    usage:"_reminder <time> (5s,15m,1h,2d) <text>",
-    run: async (client, message, args) => {
+    usage: "_reminder <time> (5s,15m,1h,2d) <text>",
+    run: async(client, message, args) => {
         let reminderTime = args[0]
         if (!reminderTime) return message.reply("Éo ghi thời gian sao tao biết tao nhắc mày.")
         let reminder = args.slice(1).join(" ");
         const embed = new RichEmbed()
             .setColor("RANDOM")
             .setTitle(`${message.author.username}'s Reminder`)
-            .addField("Reminder: ",`${reminder}`)
+            .addField("Reminder: ", `${reminder}`)
             .addField("Time", `${reminderTime}`)
             .setTimestamp()
         message.channel.send(embed)
 
-        setTimeout(function(){
+        setTimeout(function() {
             let embed = new RichEmbed()
                 .setColor("RANDOM")
                 .setTitle(`${message.author.username}'s Reminder`)
-                .addField("Reminder: ",`${reminder}`)
+                .addField("Reminder: ", `${reminder}`)
                 .setTimestamp()
             message.channel.send(embed)
-            
-        },ms(reminderTime));
+
+        }, ms(reminderTime));
     }
 }

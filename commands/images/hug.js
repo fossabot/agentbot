@@ -4,13 +4,13 @@ module.exports = {
     name: "hug",
     category: "images",
     description: "Hug someone :D ",
-    usage:"_hug [@tag]",
+    usage: "_hug [@tag]",
     run: (client, message, args) => {
         let url = `https://some-random-api.ml/animu/hug`
         let nguoitag = message.mentions.members.array() || message.guild.members.get(args[0])
-        getJSON(url, function(error,response){
-            if(!error){
-                if (nguoitag.length == 0){
+        getJSON(url, function(error, response) {
+            if (!error) {
+                if (nguoitag.length == 0) {
                     const embed1 = new RichEmbed()
                         .setDescription(`${message.member} đã ôm tất cả mọi người <3`)
                         .setImage(response.link)
@@ -25,7 +25,7 @@ module.exports = {
             } else {
                 return message.channel.send("Bot lỗi khi cố gắng lấy hình, hãy thử lại sau")
             }
-            });
+        });
     }
 
-    }
+}

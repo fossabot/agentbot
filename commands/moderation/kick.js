@@ -7,7 +7,7 @@ module.exports = {
     category: "moderation",
     description: "Kicks the member",
     usage: "<id | mention>",
-    run: async (client, message, args) => {
+    run: async(client, message, args) => {
         const logChannel = message.guild.channels.find(c => c.name === "log📝") || message.channel;
 
         if (message.deletable) message.delete();
@@ -54,13 +54,13 @@ module.exports = {
             return message.reply("I can't kick that person due to role hierarchy, I suppose.")
                 .then(m => m.delete(5000));
         }
-                
+
         const embed = new RichEmbed()
             .setColor("#ff0000")
             .setThumbnail(toKick.user.displayAvatarURL)
             .setFooter(message.member.displayName, message.author.displayAvatarURL)
             .setTimestamp()
-            .setDescription(stripIndents`**- Kicked member:** ${toKick} (${toKick.id})
+            .setDescription(stripIndents `**- Kicked member:** ${toKick} (${toKick.id})
             **- Kicked by:** ${message.member} (${message.member.id})
             **- Reason:** ${args.slice(1).join(" ")}`);
 

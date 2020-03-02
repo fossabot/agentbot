@@ -6,7 +6,7 @@ module.exports = {
     category: "fun",
     description: "Người khác yêu bạn cỡ nào?",
     usage: "_love [mention or id or username]",
-    run: async (client, message, args) => {
+    run: async(client, message, args) => {
         // Get a member from mention, id, or username
         let person = getMember(message, args[0]);
 
@@ -15,7 +15,7 @@ module.exports = {
                 .filter(m => m.id !== message.author.id && !m.user.bot)
                 .random();
         }
-        if (message.author.id=== person.id)
+        if (message.author.id === person.id)
             return message.reply("Mày đéo thể đo xem yêu bản thân bao nhiêu vì nó luôn luôn là 100%.");
 
 
@@ -26,7 +26,7 @@ module.exports = {
         const embed = new RichEmbed()
             .setColor("#ffb6c1")
             .addField(`☁ **${person.displayName}** loves **${message.member.displayName}** this much:`,
-            `💟 ${Math.floor(love)}%\n\n${loveLevel}`);
+                `💟 ${Math.floor(love)}%\n\n${loveLevel}`);
 
         message.channel.send(embed);
     }

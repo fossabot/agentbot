@@ -15,9 +15,9 @@ module.exports = {
         const embed = new RichEmbed()
             .setColor("RANDOM")
             .setDescription(`**Tháo khoá mõm command**`)
-            .addField('Người bị khoá mõm: ',member)
-            .addField('Người tháo khoá: ',message.author)
-            .addField('Lý do tháo khoá mõm: ',reason)
+            .addField('Người bị khoá mõm: ', member)
+            .addField('Người tháo khoá: ', message.author)
+            .addField('Lý do tháo khoá mõm: ', reason)
         logChannel.send(embed)
-}
+    }
 }

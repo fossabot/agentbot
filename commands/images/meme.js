@@ -7,7 +7,7 @@ module.exports = {
     name: "meme",
     category: "images",
     description: "Sends an epic meme",
-    run: async (client, message, args) => {
+    run: async(client, message, args) => {
         const res = await ksoft.images.meme();
         const embed = new RichEmbed()
             .setTitle(`Meme from ${res.post.subreddit}`)

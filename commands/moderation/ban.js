@@ -6,8 +6,8 @@ module.exports = {
     name: "ban",
     category: "moderation",
     description: "bans the member",
-    usage: "<id | mention>",
-    run: async (client, message, args) => {
+    usage: "_ban <@tag> <reason>",
+    run: async(client, message, args) => {
         const logChannel = message.guild.channels.find(c => c.name === "log📝") || message.channel;
 
         if (message.deletable) message.delete();
@@ -28,7 +28,7 @@ module.exports = {
         if (!message.member.hasPermission("BAN_MEMBERS")) {
             return message.reply("❌ You do not have permissions to ban members. Please contact a staff member")
                 .then(m => m.delete(5000));
-        
+
         }
         // No bot permissions
         if (!message.guild.me.hasPermission("BAN_MEMBERS")) {
@@ -55,13 +55,13 @@ module.exports = {
             return message.reply("I can't ban that person due to role hierarchy, I suppose.")
                 .then(m => m.delete(5000));
         }
-        
+
         const embed = new RichEmbed()
             .setColor("#ff0000")
             .setThumbnail(toBan.user.displayAvatarURL)
             .setFooter(message.member.displayName, message.author.displayAvatarURL)
             .setTimestamp()
-            .setDescription(stripIndents`**- Baned member:** ${toBan} (${toBan.id})
+            .setDescription(stripIndents `**- Baned member:** ${toBan} (${toBan.id})
             **- Baned by:** ${message.member} (${message.member.id})
             **- Reason:** ${args.slice(1).join(" ")}`);
 

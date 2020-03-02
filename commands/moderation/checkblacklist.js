@@ -5,7 +5,7 @@ module.exports = {
     aliases: ["cbl", "blacklistcheck"],
     category: "moderation",
     description: "Show all blacklist members",
-    usage: "_checkblacklist",
+    usage: "`\ _checkblacklist \` or `\ _cbl \`",
     run: async(client, message, args) => {
         var get_list = fs.readFileSync("./blacklist.txt", 'utf8').split('\n')
         var usernames = []

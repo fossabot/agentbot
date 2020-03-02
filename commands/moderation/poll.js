@@ -6,13 +6,13 @@ module.exports = {
     category: "moderation",
     description: "Tạo poll",
     usage: "_poll <time end> (10s,2m,1h,10d) <what to poll> ",
-    run: async (client, message, args) => {
-        if(!args[0]) return message.reply("Không ghi thời gian sao tao tạo poll.")
+    run: async(client, message, args) => {
+        if (!args[0]) return message.reply("Không ghi thời gian sao tao tạo poll.")
         if (!args[1]) return message.reply(`Đéo ghi gì tao tạo poll bằng chim =))`)
-        if(message.member.roles.some(r=>["admin","mod"].includes(r.name)) || message.author.id == "455935236262592512"){
+        if (message.member.roles.some(r => ["admin", "mod"].includes(r.name)) || message.author.id == "455935236262592512") {
             let time = ms(args[0])
             const channel = client.channels.get("663971661208485971")
-            if(!channel) return message.reply("Đéo tìm thấy phòng, check lại config")
+            if (!channel) return message.reply("Đéo tìm thấy phòng, check lại config")
             const embed = new RichEmbed()
                 .setColor('RANDOM')
                 .setFooter('React to vote! ')
@@ -21,26 +21,26 @@ module.exports = {
             let msg = await channel.send(embed);
             await msg.react('✅');
             await msg.react('❌');
-            message.delete({timeout: 1000});
+            message.delete({ timeout: 1000 });
 
             const filter = (reaction) => reaction.emoji.name == '✅' || reaction.emoji.name == '❌'
 
             const results = await msg.awaitReactions(filter, { time: time })
-            var count_no = results.array()[0].count-1
-            var count_yes = results.array()[1].count-1
+            var count_no = results.array()[0].count - 1
+            var count_yes = results.array()[1].count - 1
             await msg.clearReactions()
             const results_embed = new RichEmbed()
                 .setTitle(`Kết quả poll: `)
-                .addField(`Yes ✅ votes: `,count_yes,true)
-                .addField(`No ❌ votes: `,count_no)
+                .addField(`Yes ✅ votes: `, count_yes, true)
+                .addField(`No ❌ votes: `, count_no)
             msg.edit(results_embed)
-            
-            
+
+
         } else {
-            message.delete({timeout:1000})
-            return message.reply("Code này dành cho admin và mod").then(m=>m.delete(5000))
+            message.delete({ timeout: 1000 })
+            return message.reply("Code này dành cho admin và mod").then(m => m.delete(5000))
         }
-        
+
 
     }
 }

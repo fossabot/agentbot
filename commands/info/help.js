@@ -7,7 +7,7 @@ module.exports = {
     category: "info",
     description: "Returns all commands, or one specific command info",
     usage: "[command | alias]",
-    run: async (client, message, args) => {
+    run: async(client, message, args) => {
         if (args[0]) {
             return getCMD(client, message, args[0]);
         } else {
@@ -29,7 +29,7 @@ function getAll(client, message) {
     }
 
     const info = client.categories
-        .map(cat => stripIndents`**${cat[0].toUpperCase() + cat.slice(1)}** \n${commands(cat)}`)
+        .map(cat => stripIndents `**${cat[0].toUpperCase() + cat.slice(1)}** \n${commands(cat)}`)
         .reduce((string, category) => string + "\n" + category);
 
     return message.channel.send(embed.setDescription(info));
@@ -39,7 +39,7 @@ function getCMD(client, message, input) {
     const embed = new RichEmbed()
 
     const cmd = client.commands.get(input.toLowerCase()) || client.commands.get(client.aliases.get(input.toLowerCase()));
-    
+
     let info = `No information found for command **${input.toLowerCase()}**`;
 
     if (!cmd) {

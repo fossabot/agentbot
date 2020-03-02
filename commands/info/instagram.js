@@ -9,7 +9,7 @@ module.exports = {
     category: "info",
     description: "Find out some nice instagram statistics",
     usage: "<name>",
-    run: async (client, message, args) => {
+    run: async(client, message, args) => {
         const name = args.join(" ");
 
         if (!name) {
@@ -18,8 +18,8 @@ module.exports = {
         }
 
         const url = `https://instagram.com/${name}/?__a=1`;
-        
-        let res; 
+
+        let res;
 
         try {
             res = await fetch(url).then(url => url.json());
@@ -35,7 +35,7 @@ module.exports = {
             .setTitle(account.full_name)
             .setURL(`https://instagram.com/${name}`)
             .setThumbnail(account.profile_pic_url_hd)
-            .addField("Profile information", stripIndents`**- Username:** ${account.username}
+            .addField("Profile information", stripIndents `**- Username:** ${account.username}
             **- Full name:** ${account.full_name}
             **- Biography:** ${account.biography.length == 0 ? "none" : account.biography}
             **- Posts:** ${account.edge_owner_to_timeline_media.count}

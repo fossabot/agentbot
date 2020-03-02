@@ -39,7 +39,7 @@ const search = {
     "ca": "Canada",
     "us": "US",
     "kr": "South Korea",
-    "au": "Austria",
+    "au": "Australia",
     "cn": "Mainland China",
     "se": "Sweden",
     "hk": "Hong Kong",

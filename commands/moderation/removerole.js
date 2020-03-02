@@ -5,7 +5,7 @@ module.exports = {
     category: "moderation",
     description: "Add role (dành cho admin)",
     usage: "_removerole <tag> <rolename>",
-    run: async (client, message, args) => {
+    run: async(client, message, args) => {
         if (!args[0]) {
             return message.reply("Đéo tag tao tán chết mẹ")
                 .then(m => m.delete(5000));
@@ -21,7 +21,7 @@ module.exports = {
         var role = message.guild.roles.find(role => role.name === matches.bestMatch.target);
         if (!user)
             return message.reply("Đéo tìm thấy người mày tag, chắc là mày ngu hoặc là tao ngu.")
-        
+
         message.guild.member(user).removeRole(role).catch(err => message.channel.send(err.message));
         message.channel.send(`✅ Đã xoá role **${role.name}** cho **${user.user.tag}**`)
     }

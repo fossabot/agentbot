@@ -6,7 +6,7 @@ module.exports = {
     category: "moderation",
     description: "Reports a member",
     usage: "_report <mention> <id>",
-    run: async (client, message, args) => {
+    run: async(client, message, args) => {
         if (message.deletable) message.delete();
 
         let rMember = message.mentions.members.first() || message.guild.members.get(args[0]);
@@ -19,10 +19,10 @@ module.exports = {
 
         if (!args[1])
             return message.channel.send("Please provide a reason for the report").then(m => m.delete(5000));
-        
+
         const channel = client.channels.get("664007055278997514")
         const admin_log = client.channels.get('676833340950839317')
-            
+
         if (!channel)
             return message.channel.send("Couldn't find a `#report` channel").then(m => m.delete(5000));
 
@@ -31,7 +31,7 @@ module.exports = {
             .setTimestamp()
             .setFooter(message.guild.name, message.guild.iconURL)
             .setAuthor("Reported member", rMember.user.displayAvatarURL)
-            .setDescription(stripIndents`**- Member:** ${rMember} (${rMember.user.id})
+            .setDescription(stripIndents `**- Member:** ${rMember} (${rMember.user.id})
             **- Tag:** ${rMember.user.tag}
             **- Reported in:** ${message.channel}
             **- Reason:** ${args.slice(1).join(" ")}`);

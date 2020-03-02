@@ -5,7 +5,7 @@ module.exports = {
     category: "moderation",
     description: "Add role (dành cho admin)",
     usage: "_addrole <tag> <rolename>",
-    run: async (client, message, args) => {
+    run: async(client, message, args) => {
         if (!args[0]) {
             return message.reply("Đéo tag tao tán chết mẹ")
                 .then(m => m.delete(5000));

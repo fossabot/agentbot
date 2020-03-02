@@ -3,9 +3,9 @@ module.exports = {
     aliases: ["purge"],
     category: "moderation",
     description: "Clears the chat",
-    run: async (client, message, args) => {
+    run: async(client, message, args) => {
         message.delete();
-    
+
         // Member doesn't have permissions
         if (!message.member.hasPermission("MANAGE_MESSAGES")) {
             return message.reply("Mày đéo có quyền Manage Message nên tao đéo xoá").then(m => m.delete(5000));

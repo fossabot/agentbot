@@ -1,13 +1,13 @@
 let SS = require('string-similarity');
-const {RichEmbed} = require('discord.js')
+const { RichEmbed } = require('discord.js')
 module.exports = {
     name: "members",
     category: "info",
     description: "",
     usage: "_members <role_name>",
-    run: async (client, message, args) => {
+    run: async(client, message, args) => {
         if (message.author.id !== "455935236262592512") return message.channel.send(`Command dành riêng cho Dui`)
-        if(!args[0]){
+        if (!args[0]) {
             return message.reply(`Tìm thành viên mà đéo ghi tên role :)`)
                 .then(m => m.delete(5000))
         }

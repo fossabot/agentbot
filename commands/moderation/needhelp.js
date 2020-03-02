@@ -2,9 +2,9 @@ module.exports = {
     name: "needhelp",
     aliases: ["trogiup"],
     category: "moderation",
-    description:"Ticket System for help",
-    usage:"_needhelp or _trogiup",
-    run: (client,message,args) => {
+    description: "Ticket System for help",
+    usage: "_needhelp or _trogiup",
+    run: (client, message, args) => {
         var help_channel = client.channels.get("666039326098063420");
         var helprole = message.guild.roles.get("666039494193184788");
         var duy = "455935236262592512"

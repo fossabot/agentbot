@@ -4,11 +4,11 @@ module.exports = {
     name: "cat",
     category: "animals",
     description: "Gởi ảnh/video moè cute :)) ",
-    usage:"_cat",
+    usage: "_cat",
     run: (client, message, args) => {
         let url = `http://aws.random.cat/meow`
-        getJSON(url, function(error,response){
-            if(!error){
+        getJSON(url, function(error, response) {
+            if (!error) {
                 const embed = new RichEmbed()
                     .setTitle(`Cat pics/videos :D`)
                     .setURL(response.file)
@@ -18,7 +18,7 @@ module.exports = {
             } else {
                 message.channel.send(`Bot lỗi trong khi lấy hình, vui lòng thử lại sau.`)
             }
-      
+
         });
     }
 }
