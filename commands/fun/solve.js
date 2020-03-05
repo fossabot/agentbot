@@ -1,7 +1,7 @@
 const encode = require('strict-uri-encode')
 var { wolfarm_key } = require('../../config.json')
 var getJSON = require('get-json')
-const { RichEmbed } = require('discord.js')
+const { MessageEmbed } = require('discord.js')
 module.exports = {
     name: "solve",
     category: "fun",
@@ -14,7 +14,7 @@ module.exports = {
             if (error) return message.channel.send(`Bot lỗi khi đang làm việc, vui lòng thử lại sau.`)
             if (response.queryresult.success == false) return message.reply(`Input ncc, tao tìm không ra câu trả lời.`)
             var output = response.queryresult.pods[1].subpods[1]
-            const embed = new RichEmbed()
+            const embed = new MessageEmbed()
                 .setAuthor(`Agent Bot`)
                 .setTitle(`Question: ${args.join(' ')}. ${output.title}`)
                 .setDescription(output.plaintext)

@@ -20,17 +20,19 @@ module.exports = {
             if (error) return message.channel.send(`Bot lỗi, vui lòng thử lại sau.`)
                 //check coi màu đã có trong sv chưa
             var roles = [];
-            roles.push(message.guild.roles.filter(r => r.managed === false).map(g => g.name))
+            roles.push(message.guild.roles.cache.filter(r => r.managed === false).map(g => g.name))
             var search = response.name.value
             var matches = stringSimilarity.findBestMatch(search, roles[0])
             if (matches.bestMatch.rating < 0.65) {
-                let lowest_role = message.guild.roles.get('663988046009466880')
-                let position = lowest_role.calculatedPosition
+                let lowest_role = message.guild.roles.cache.get('684957922148745267')
+                let position = lowest_role.position
                 let color = response.hex.value
-                message.guild.createRole({
-                    name: search,
-                    color: color,
-                    position: position,
+                message.guild.roles.create({
+                    data: {
+                        name: search,
+                        color: color,
+                        position: position,
+                    }
                 })
                 return message.channel.send(`Đã tạo role màu: **${search}** với hex code **${color}** ở vị trí **${position}**`)
             } else {

@@ -1,4 +1,4 @@
-const { RichEmbed } = require("discord.js");
+const { MessageEmbed } = require("discord.js");
 var getJSON = require("get-json");
 var { giphy_key } = require("../../config.json")
 module.exports = {
@@ -11,13 +11,13 @@ module.exports = {
         getJSON(url, function(error, response) {
             let nguoitag = message.mentions.members.array() || message.guild.members.get(args[0])
             if (nguoitag.length == 0) {
-                const embed1 = new RichEmbed()
+                const embed1 = new MessageEmbed()
                     .setDescription(`${message.member} đã tự đấm chính mình 👊`)
                     .setImage(response.data.images.original.url)
                     .setFooter(`AgentBot đoán là thằng này bị ngu =))))`)
                 return message.channel.send(embed1)
             } else {
-                const embed = new RichEmbed()
+                const embed = new MessageEmbed()
                     .setDescription(`${message.member} đã đấm vỡ mồm 🤜 ${nguoitag}`)
                     .setImage(response.data.images.original.url)
                     .setFooter(`By AgentBot đẹp trai`)

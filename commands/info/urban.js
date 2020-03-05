@@ -1,5 +1,5 @@
 const urban = require('relevant-urban')
-const { RichEmbed } = require("discord.js");
+const { MessageEmbed } = require("discord.js");
 
 module.exports = {
     name: "urban",
@@ -15,7 +15,7 @@ module.exports = {
         let res = await urban(args.join(' ')).catch(e => {
             return message.channel.send(`**Đéo tìm thấy từ: **${args.join(' ')}`)
         });
-        const embed = new RichEmbed()
+        const embed = new MessageEmbed()
             .setColor('RANDOM')
             .setTitle(res.word)
             .setURL(res.urbanURL)

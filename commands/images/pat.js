@@ -1,4 +1,4 @@
-const { RichEmbed } = require("discord.js");
+const { MessageEmbed } = require("discord.js");
 var getJSON = require("get-json");
 module.exports = {
     name: "pat",
@@ -11,13 +11,13 @@ module.exports = {
             let nguoitag = message.mentions.members.array() || message.guild.members.get(args[0])
             if (!error) {
                 if (nguoitag.length == 0) {
-                    const embed1 = new RichEmbed()
+                    const embed1 = new MessageEmbed()
                         .setDescription(`${message.member.displayName} vỗ về đã tất cả mọi người <3`)
                         .setImage(response.link)
                         .setFooter(`By AgentBot đẹp trai`)
                     return message.channel.send(embed1)
                 } else {
-                    const embed = new RichEmbed()
+                    const embed = new MessageEmbed()
                         .setDescription(`Awwww, ${message.member} đã vỗ về ${nguoitag} <3`)
                         .setImage(response.link)
                         .setFooter(`By AgentBot đẹp trai`)

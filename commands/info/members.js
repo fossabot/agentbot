@@ -1,5 +1,5 @@
 let SS = require('string-similarity');
-const { RichEmbed } = require('discord.js')
+const { MessageEmbed } = require('discord.js')
 module.exports = {
     name: "members",
     category: "info",
@@ -11,12 +11,11 @@ module.exports = {
             return message.reply(`Tìm thành viên mà đéo ghi tên role :)`)
                 .then(m => m.delete(5000))
         }
-        let roles = [];
-        roles.push(message.guild.roles.filter(r => r.managed === false).map(g => g.name))
+        var roles = message.guild.roles.cache.filter(r => r.managed === false).array().map(g => g.name)
         var search = args.join(' ')
-        var matches = SS.findBestMatch(search, roles[0])
-        var members = message.guild.roles.find(role => role.name == matches.bestMatch.target).members.map(m => m.user)
-        const embed = new RichEmbed()
+        var matches = SS.findBestMatch(search, roles)
+        var members = message.guild.roles.cache.find(role => role.name == matches.bestMatch.target).members.map(m => m.user)
+        const embed = new MessageEmbed()
             .setTitle(`Thành viên trong role ${matches.bestMatch.target}`)
             .setDescription(members)
         message.channel.send(embed)

@@ -1,5 +1,5 @@
 const math = require('mathjs');
-const { RichEmbed } = require("discord.js");
+const { MessageEmbed } = require("discord.js");
 module.exports = {
     name: "calc",
     category: "fun",
@@ -12,7 +12,7 @@ module.exports = {
         } catch (e) {
             return message.channel.send("Tao không giải được, một là mày ngu hai là tao ngu!")
         }
-        const embed = new RichEmbed()
+        const embed = new MessageEmbed()
             .setColor(0xffffff)
             .setTitle('Math Calculation')
             .addField('Input', `\`\`\`${args.join(' ')}\`\`\``)

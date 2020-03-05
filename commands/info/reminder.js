@@ -1,4 +1,4 @@
-const { RichEmbed } = require('discord.js')
+const { MessageEmbed } = require('discord.js')
 const ms = require('ms')
 
 module.exports = {
@@ -10,7 +10,7 @@ module.exports = {
         let reminderTime = args[0]
         if (!reminderTime) return message.reply("Éo ghi thời gian sao tao biết tao nhắc mày.")
         let reminder = args.slice(1).join(" ");
-        const embed = new RichEmbed()
+        const embed = new MessageEmbed()
             .setColor("RANDOM")
             .setTitle(`${message.author.username}'s Reminder`)
             .addField("Reminder: ", `${reminder}`)
@@ -19,7 +19,7 @@ module.exports = {
         message.channel.send(embed)
 
         setTimeout(function() {
-            let embed = new RichEmbed()
+            let embed = new MessageEmbed()
                 .setColor("RANDOM")
                 .setTitle(`${message.author.username}'s Reminder`)
                 .addField("Reminder: ", `${reminder}`)

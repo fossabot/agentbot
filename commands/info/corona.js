@@ -1,4 +1,4 @@
-const { RichEmbed } = require("discord.js");
+const { MessageEmbed } = require("discord.js");
 const url = "https://corona-api.kompa.ai/graphql";
 const graphql = require("graphql-request");
 const ascii = require('ascii-table');
@@ -76,7 +76,7 @@ module.exports = {
                 var confirmed = confirmed.toString().replace(/(-?\d+)(\d{3})/g, "$1,$2"); //Thêm dấu phẩy sau 3 chữ số (75,748)
                 var die = die.toString().replace(/(-?\d+)(\d{3})/g, "$1,$2");
                 var recovered = recovered.toString().replace(/(-?\d+)(\d{3})/g, "$1,$2");
-                const embed = new RichEmbed()
+                const embed = new MessageEmbed()
                     .setAuthor(`Dữ liệu được tự động cập nhật`)
                     .setTitle(`Thông tin về virus Corona (nCoV, COVID-19)`)
                     .addField(`Số lượng ca nhiễm: `, `${confirmed} ca`)
@@ -85,8 +85,7 @@ module.exports = {
                     .setFooter('Nguồn: corona.kompa.ai | Made by phamleduy04#9999');
                 message.channel.send(embed);
             });
-        }
-        if (args.join(' ') == "vn full") {
+        } else if (args.join(' ').toLowerCase() == "vn full") {
             graphqlclient.request(query).then(res => {
                 var all_confirmed = 0;
                 var all_die = 0;
@@ -104,13 +103,13 @@ module.exports = {
                     code: 'md'
                 });
             });
-        } else if (search[args[0]]) {
+        } else if (args[0] && search[args[0].toLowerCase()]) {
             graphqlclient.request(query).then(result => {
-                var json_data = result.countries.filter(find => find.Country_Region == search[args[0]])
+                var json_data = result.countries.filter(find => find.Country_Region == search[args[0].toLowerCase()])
                 var json_data = json_data[0];
                 var timestamp = new Date(parseInt(json_data.Last_Update))
                 var date = timestamp.getDate() + '/' + (timestamp.getMonth() + 1) + '/' + timestamp.getFullYear()
-                const embed = new RichEmbed()
+                const embed = new MessageEmbed()
                     .setAuthor(`Dữ liệu được tự động cập nhật`)
                     .setTitle(`Số ca nhiễm COVID-19 ở ${quocgia[search[args[0]]]} `)
                     .addField(`Số ca đẵ xác nhận: `, `${json_data.Confirmed} ca`)

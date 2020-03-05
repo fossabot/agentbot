@@ -15,12 +15,12 @@ module.exports = {
             return message.channel.send(`Bot đang bị cooldown, vui lòng thử lại sau 5s!`)
         } else {
             cooldown.add(client.user.id)
-            var avatar1 = message.author.displayAvatarURL
-            var tag = message.mentions.members.first() || message.guild.members.get(args[0])
+            var avatar1 = message.author.avatarURL({ format: 'jpg', dynamic: true, size: 128 })
+            var tag = message.mentions.members.first() || message.guild.members.cache.get(args[0])
             if (tag) {
-                var avaurl = tag.user.displayAvatarURL
+                var avaurl = tag.user.avatarURL({ format: 'jpg', dynamic: true, size: 128 })
             } else {
-                var avaurl = message.author.displayAvatarURL
+                var avaurl = message.author.avatarURL({ format: 'jpg', dynamic: true, size: 128 })
             }
             if (tag.user.id == '455935236262592512') var avaurl = avatar1
             let file = fs.createWriteStream(`./tat.jpg`)
@@ -47,7 +47,7 @@ module.exports = {
                 .catch(error => {
                     console.log(error)
                 })
-            message.channel.send({ file: './tat.jpg' })
+            message.channel.send({ files: [{ attachment: "./tat.jpg", name: "tat.jpg" }] })
             setTimeout(() => {
                 cooldown.delete(client.user.id)
             }, ms('5s'))

@@ -1,4 +1,4 @@
-const { RichEmbed } = require("discord.js");
+const { MessageEmbed } = require("discord.js");
 const ms = require('ms');
 module.exports = {
     name: "poll",
@@ -9,11 +9,11 @@ module.exports = {
     run: async(client, message, args) => {
         if (!args[0]) return message.reply("Không ghi thời gian sao tao tạo poll.")
         if (!args[1]) return message.reply(`Đéo ghi gì tao tạo poll bằng chim =))`)
-        if (message.member.roles.some(r => ["admin", "mod"].includes(r.name)) || message.author.id == "455935236262592512") {
+        if (message.member.roles.cache.some(r => ["admin", "mod"].includes(r.name)) || message.author.id == "455935236262592512") {
             let time = ms(args[0])
-            const channel = client.channels.get("663971661208485971")
+            const channel = client.channels.cache.get("684848824732221468")
             if (!channel) return message.reply("Đéo tìm thấy phòng, check lại config")
-            const embed = new RichEmbed()
+            const embed = new MessageEmbed()
                 .setColor('RANDOM')
                 .setFooter('React to vote! ')
                 .setDescription(`Thời gian: ${args[0]}\nNội dung: ${args.slice(1).join(' ')}`)
@@ -28,9 +28,9 @@ module.exports = {
             const results = await msg.awaitReactions(filter, { time: time })
             var count_no = results.array()[0].count - 1
             var count_yes = results.array()[1].count - 1
-            await msg.clearReactions()
-            const results_embed = new RichEmbed()
-                .setTitle(`Kết quả poll: `)
+            const results_embed = new MessageEmbed()
+                .setTitle(`Kết quả poll cho câu hỏi: `)
+                .setDescription(args.slice(1).join(' '))
                 .addField(`Yes ✅ votes: `, count_yes, true)
                 .addField(`No ❌ votes: `, count_no)
             msg.edit(results_embed)

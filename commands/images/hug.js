@@ -1,4 +1,4 @@
-const { RichEmbed } = require("discord.js");
+const { MessageEmbed } = require("discord.js");
 var getJSON = require("get-json");
 module.exports = {
     name: "hug",
@@ -11,13 +11,13 @@ module.exports = {
         getJSON(url, function(error, response) {
             if (!error) {
                 if (nguoitag.length == 0) {
-                    const embed1 = new RichEmbed()
+                    const embed1 = new MessageEmbed()
                         .setDescription(`${message.member} đã ôm tất cả mọi người <3`)
                         .setImage(response.link)
                         .setFooter(`By AgentBot đẹp trai`)
                     return message.channel.send(embed1)
                 }
-                const embed = new RichEmbed()
+                const embed = new MessageEmbed()
                     .setDescription(`Awwww, ${message.member} đã ôm ${nguoitag} <3`)
                     .setImage(response.link)
                     .setFooter(`By AgentBot đẹp trai`)

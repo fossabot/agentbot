@@ -1,5 +1,5 @@
 const { KSoftClient } = require('ksoft.js');
-const { RichEmbed } = require('discord.js')
+const { MessageEmbed } = require('discord.js')
 var { ksoft_key } = require('../../config.json')
 const ksoft = new KSoftClient(ksoft_key);
 
@@ -16,7 +16,7 @@ module.exports = {
                 return message.channel.send(err.message)
             });
         if (respond.lyrics.length > 2048) return message.reply("Bài hát bạn yêu cầu lớn hơn 2048 ký tự nên discord éo cho gởi :)))")
-        const embed = new RichEmbed()
+        const embed = new MessageEmbed()
             .setFooter(`Lyrics Command`)
             .setAuthor(`Song: ${respond.name} by ${respond.artist.name}`)
             .setDescription(respond.lyrics)

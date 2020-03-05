@@ -1,5 +1,5 @@
 const ms = require('ms')
-const { RichEmbed } = require('discord.js')
+const { MessageEmbed } = require('discord.js')
 module.exports = {
     name: "tempmute",
     category: "moderation",
@@ -9,17 +9,17 @@ module.exports = {
         if (!message.member.hasPermission("MANAGE_ROLES"))
             return message.reply("You don't have the required permissions to use this command.").then(m => m.delete(5000));
         // This is the role you want to assign to the user
-        let mutedRole = message.guild.roles.find(role => role.name == "Muted");
+        let mutedRole = message.guild.roles.cache.find(role => role.name == "Muted");
         // Log channel
-        let logChannel = message.guild.channels.get('663966548272349205') || message.channel
+        let logChannel = message.guild.channels.cache.get('684848842268737548') || message.channel
             // This is the member you want to mute
-        let member = message.mentions.members.first() || message.guild.members.get(args[0]);
+        let member = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
         let time = ms(args[1]);
         let reason = args.slice(2).join(" ");
         // Mute the user
-        member.addRole(mutedRole)
+        member.roles.add(mutedRole)
         message.channel.send(`Đã khoá mõm **${member.user.tag}** với thời gian ${args[1]}. Lý do: ${reason}`)
-        const embed = new RichEmbed()
+        const embed = new MessageEmbed()
             .setColor("RANDOM")
             .setDescription("Khoá mõm command")
             .addField('Người bị khoá mõm: ', member, true)
@@ -30,7 +30,7 @@ module.exports = {
 
         // Unmute them after x minutes
         setTimeout(() => {
-            message.guild.member(member).removeRole(mutedRole);
+            message.guild.member(member).roles.remove(mutedRole);
         }, time);
     }
 }

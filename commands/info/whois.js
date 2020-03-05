@@ -1,4 +1,4 @@
-const { RichEmbed } = require("discord.js");
+const { MessageEmbed } = require("discord.js");
 const { stripIndents } = require("common-tags");
 const { getMember, formatDate } = require("../../functions.js");
 
@@ -10,13 +10,13 @@ module.exports = {
     usage: "_whois <tag,username,ID>",
     run: (client, message, args) => {
         const member = getMember(message, args.join(" "));
-        let gtrole = message.guild.roles.get('663977844371619873')
-        let qgrole = message.guild.roles.get('663984586757505034')
-        let gamerole = message.guild.roles.get('663990034868994048')
-        let statusrole = message.guild.roles.get('668691327701090314')
+        let gtrole = message.guild.roles.cache.get('684848725574680689')
+        let qgrole = message.guild.roles.cache.get('684848710605078571')
+        let gamerole = message.guild.roles.cache.get('684848750795161644')
+        let statusrole = message.guild.roles.cache.get('684848749004193798')
             // Member variables
         const joined = formatDate(member.joinedAt);
-        const roles = member.roles
+        const roles = member.roles.cache
             .filter(r => r.id !== message.guild.id)
             .map(r => r)
         roles.splice(roles.indexOf(gtrole), 1);
@@ -27,9 +27,9 @@ module.exports = {
         // User variables
         const created = formatDate(member.user.createdAt);
 
-        const embed = new RichEmbed()
-            .setFooter(member.displayName, member.user.displayAvatarURL)
-            .setThumbnail(member.user.displayAvatarURL)
+        const embed = new MessageEmbed()
+            .setFooter(member.displayName, member.user.avatarURL())
+            .setThumbnail(member.user.avatarURL())
             .setColor(member.displayHexColor === '#000000' ? '#ffffff' : member.displayHexColor)
 
         .addField('Member information:', stripIndents `**- Display name:** ${member.displayName}

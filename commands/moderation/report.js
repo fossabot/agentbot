@@ -1,4 +1,4 @@
-const { RichEmbed } = require("discord.js");
+const { MessageEmbed } = require("discord.js");
 const { stripIndents } = require("common-tags");
 
 module.exports = {
@@ -9,7 +9,7 @@ module.exports = {
     run: async(client, message, args) => {
         if (message.deletable) message.delete();
 
-        let rMember = message.mentions.members.first() || message.guild.members.get(args[0]);
+        let rMember = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
 
         if (!rMember)
             return message.reply("Couldn't find that person?").then(m => m.delete(5000));
@@ -20,13 +20,13 @@ module.exports = {
         if (!args[1])
             return message.channel.send("Please provide a reason for the report").then(m => m.delete(5000));
 
-        const channel = client.channels.get("664007055278997514")
-        const admin_log = client.channels.get('676833340950839317')
+        const channel = client.channels.cache.get("684848790473015297")
+        const admin_log = client.channels.cache.get('684848823633313794')
 
         if (!channel)
             return message.channel.send("Couldn't find a `#report` channel").then(m => m.delete(5000));
 
-        const embed = new RichEmbed()
+        const embed = new MessageEmbed()
             .setColor("#ff0000")
             .setTimestamp()
             .setFooter(message.guild.name, message.guild.iconURL)

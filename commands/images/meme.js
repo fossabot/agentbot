@@ -1,4 +1,4 @@
-const { RichEmbed } = require("discord.js");
+const { MessageEmbed } = require("discord.js");
 const { KSoftClient } = require('ksoft.js');
 var { ksoft_key } = require('../../config.json')
 const ksoft = new KSoftClient(ksoft_key);
@@ -9,7 +9,7 @@ module.exports = {
     description: "Sends an epic meme",
     run: async(client, message, args) => {
         const res = await ksoft.images.meme();
-        const embed = new RichEmbed()
+        const embed = new MessageEmbed()
             .setTitle(`Meme from ${res.post.subreddit}`)
             .setColor("RANDOM")
             .setImage(res.url)

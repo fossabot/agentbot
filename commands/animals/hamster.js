@@ -1,4 +1,4 @@
-const { RichEmbed } = require("discord.js");
+const { MessageEmbed } = require("discord.js");
 var getJSON = require("get-json");
 var { giphy_key } = require("../../config.json")
 module.exports = {
@@ -10,7 +10,7 @@ module.exports = {
         let url = `https://api.giphy.com/v1/gifs/random?api_key=${giphy_key}&tag=hamsters&rating=PG-13`
         getJSON(url, function(error, response) {
             if (error) return message.channel.send('Bot gặp lỗi trong khi lấy hình, vui lòng thử lại sau')
-            const embed = new RichEmbed()
+            const embed = new MessageEmbed()
                 .setTitle(`Hamsters gifs :D`)
                 .setURL(response.data.images.original.url)
                 .setImage(response.data.images.original.url)

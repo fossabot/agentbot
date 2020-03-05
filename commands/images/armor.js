@@ -39,7 +39,7 @@ module.exports = {
                 .catch(error => {
                     console.log(error)
                 })
-            message.channel.send({ file: './armor.jpg' })
+            message.channel.send({ files: [{ attachment: "./armor.jpg", name: "armor.jpg" }] })
             setTimeout(() => {
                 cooldown.delete(client.user.id)
             }, ms('5s'))

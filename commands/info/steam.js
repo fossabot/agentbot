@@ -1,4 +1,4 @@
-const { RichEmbed } = require("discord.js")
+const { MessageEmbed } = require("discord.js")
 const fetch = require("node-fetch")
 const { stripIndents } = require("common-tags")
 const dateFormat = require("dateformat")
@@ -27,7 +27,7 @@ module.exports = {
                     if (!body.players) return message.channel.send("Tao tìm mệt loz ra vẫn không thấy tên mày!")
                     const { NumberOfVACBans, NumberOfGameBans } = body.players[0];
 
-                    const embed = new RichEmbed()
+                    const embed = new MessageEmbed()
                         .setColor('#00ffff')
                         .setAuthor(`Steam Services | ${personaname}`, avatarfull)
                         .setThumbnail(avatarfull)

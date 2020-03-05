@@ -1,5 +1,5 @@
 const { KSoftClient } = require('ksoft.js');
-const { RichEmbed } = require('discord.js')
+const { MessageEmbed } = require('discord.js')
 var { ksoft_key } = require('../../config.json')
 const ksoft = new KSoftClient(ksoft_key);
 
@@ -12,7 +12,7 @@ module.exports = {
             message.channel.send("Chỉ xài ở phòng nsfw, mày xài phòng khác discord nó xoá server tao thì tao ăn cám à.");
         } else {
             const respond = await ksoft.images.nsfw();
-            const embed = new RichEmbed()
+            const embed = new MessageEmbed()
                 .setTitle(`Click here to download!`)
                 .setDescription(`NSFW image:`)
                 .setURL(respond.url)

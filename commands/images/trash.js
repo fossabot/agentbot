@@ -10,16 +10,16 @@ module.exports = {
     category: 'images',
     description: 'Trash =)',
     usage: '_trash <@tag>',
-    run: async(clent, message, args) => {
+    run: async(client, message, args) => {
         if (cooldown.has(client.user.id)) {
             return message.channel.send(`Bot đang bị cooldown, vui lòng thử lại sau 5s!`)
         } else {
             cooldown.add(client.user.id)
-            var tag = message.mentions.members.first() || message.guild.members.get(args[0])
+            var tag = message.mentions.members.first() || message.guild.members.cache.get(args[0])
             if (tag) {
-                var avaurl = tag.user.displayAvatarURL
+                var avaurl = tag.user.avatarURL({ format: 'jpg', dynamic: true, size: 256 })
             } else {
-                var avaurl = message.author.displayAvatarURL
+                var avaurl = message.author.avatarURL({ format: 'jpg', dynamic: true, size: 256 })
             }
             let file = fs.createWriteStream(`./trash.jpg`)
             await new Promise((resolve, reject) => {
@@ -44,7 +44,7 @@ module.exports = {
                 .catch(error => {
                     console.log(error)
                 })
-            message.channel.send({ file: './trash.jpg' })
+            message.channel.send({ files: [{ attachment: "./trash.jpg", name: "trash.jpg" }] })
             setTimeout(() => {
                 cooldown.delete(client.user.id)
             }, ms('5s'))

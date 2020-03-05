@@ -1,4 +1,4 @@
-const { RichEmbed } = require("discord.js");
+const { MessageEmbed } = require("discord.js");
 const weather = require('weather-js');
 module.exports = {
     name: "weather",
@@ -13,7 +13,7 @@ module.exports = {
             if (result.length === 0) return message.reply(`Bot đéo tìm ra được tên thành phố đó, mày có nhập sai chỗ lol nào không ?`)
             var current = result[0].current;
             var location = result[0].location;
-            const embed = new RichEmbed()
+            const embed = new MessageEmbed()
                 .setDescription(`**${current.skytext}** `)
                 .setThumbnail(current.imageUrl)
                 .setAuthor(`Weather at ${current.observationpoint} today`)

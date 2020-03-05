@@ -1,4 +1,4 @@
-const { RichEmbed } = require('discord.js')
+const { MessageEmbed } = require('discord.js')
 module.exports = {
     name: "unmute",
     category: "moderation",
@@ -8,11 +8,11 @@ module.exports = {
         if (!args[0]) return message.reply(`Unmute gì đéo tag sao tao biết tao unmute`)
         reason = args[1] || "Không có lý do!"
         let member = message.mentions.members.first() || message.guild.members.get(args[0]);
-        let mutedRole = message.guild.roles.find(role => role.name == "Muted");
-        let logChannel = message.guild.channels.get('663966548272349205') || message.channel
-        message.guild.member(member).removeRole(mutedRole);
+        let mutedRole = message.guild.roles.cache.find(role => role.name == "Muted");
+        let logChannel = message.guild.channels.cache.get('684848842268737548') || message.channel
+        message.guild.member(member).roles.remove(mutedRole);
         message.channel.send(`Đã unmute thành công cho ${member}`)
-        const embed = new RichEmbed()
+        const embed = new MessageEmbed()
             .setColor("RANDOM")
             .setDescription(`**Tháo khoá mõm command**`)
             .addField('Người bị khoá mõm: ', member)

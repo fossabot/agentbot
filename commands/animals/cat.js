@@ -1,5 +1,5 @@
 var getJSON = require("get-json")
-const { RichEmbed } = require("discord.js")
+const { MessageEmbed } = require("discord.js")
 module.exports = {
     name: "cat",
     category: "animals",
@@ -9,7 +9,7 @@ module.exports = {
         let url = `http://aws.random.cat/meow`
         getJSON(url, function(error, response) {
             if (!error) {
-                const embed = new RichEmbed()
+                const embed = new MessageEmbed()
                     .setTitle(`Cat pics/videos :D`)
                     .setURL(response.file)
                     .setImage(response.file)

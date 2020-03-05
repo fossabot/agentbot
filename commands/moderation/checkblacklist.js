@@ -1,5 +1,5 @@
 const fs = require('fs')
-const { RichEmbed } = require('discord.js')
+const { MessageEmbed } = require('discord.js')
 module.exports = {
     name: "checkblacklist",
     aliases: ["cbl", "blacklistcheck"],
@@ -11,11 +11,11 @@ module.exports = {
         var usernames = []
         get_list.slice(get_list.indexOf(' '))
         get_list.forEach(id => {
-            var get_id = message.guild.members.get(id)
+            var get_id = message.guild.members.cache.get(id)
             if (!get_id) return usernames.push(id)
             usernames.push(get_id.user.tag)
         })
-        const embed = new RichEmbed()
+        const embed = new MessageEmbed()
             .setTitle(`List những người bị blacklist`)
             .setDescription(usernames)
             .setFooter(`By phamleduy04#9999`)

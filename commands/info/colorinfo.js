@@ -1,5 +1,5 @@
 var getJSON = require('get-json')
-const { RichEmbed } = require("discord.js");
+const { MessageEmbed } = require("discord.js");
 module.exports = {
     name: "colorinfo",
     category: "info",
@@ -12,7 +12,7 @@ module.exports = {
         let url = `https://www.thecolorapi.com/id?hex=${color}`;
         getJSON(url, function(error, response) {
             if (error) return message.channel.send(`Bot lỗi, vui lòng thử lại sau.`)
-            const embed = new RichEmbed()
+            const embed = new MessageEmbed()
                 .setColor(color)
                 .setTitle("Link JSON")
                 .setURL(url)

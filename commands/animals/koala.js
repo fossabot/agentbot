@@ -1,5 +1,5 @@
 var getJSON = require("get-json")
-const { RichEmbed } = require("discord.js")
+const { MessageEmbed } = require("discord.js")
 module.exports = {
     name: "koala",
     category: "animals",
@@ -12,7 +12,7 @@ module.exports = {
             message.channel.send(`Fact: ${fact_res.fact}`)
         })
         getJSON(url, function(error, response) {
-            const embed = new RichEmbed()
+            const embed = new MessageEmbed()
                 .setTitle(`Koala pics :D`)
                 .setURL(response.link)
                 .setImage(response.link)

@@ -1,6 +1,6 @@
 var { google_translate_key } = require("../../config.json")
 var googleTranslate = require('google-translate')(google_translate_key)
-const { RichEmbed } = require("discord.js");
+const { MessageEmbed } = require("discord.js");
 module.exports = {
     name: "translate",
     category: "fun",
@@ -13,7 +13,7 @@ module.exports = {
         let que = args.slice(1).join(' ');
         googleTranslate.translate(`${que}`, `${lang}`, function(err, translation) {
             if (!err) {
-                const embed = new RichEmbed()
+                const embed = new MessageEmbed()
                     .setDescription(`Google translate bot`)
                     .addField(`Translate`, `${translation.detectedSourceLanguage} - ${lang}`)
                     .addField(`Before translate: `, `${que}`)

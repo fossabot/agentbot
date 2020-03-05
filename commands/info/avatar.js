@@ -1,32 +1,21 @@
-const { RichEmbed } = require('discord.js')
+const { MessageEmbed } = require('discord.js')
 module.exports = {
     name: "avatar",
+    aliases: ["ava", "avt"],
     category: "info",
     description: "Get avatar ",
     usage: "_avatar <tag>",
     run: (client, message, args) => {
-        var member = message.mentions.members.first() || message.guild.members.get(args[0]);
-        if (!member) {
-            let avaURL = message.author.displayAvatarURL
-            if (avaURL.includes('.gif')) avaURL = `${avaURL}?size=1024&f=.gif`
-            const embed = new RichEmbed()
-                .setTitle(`Link avatar: `)
-                .setURL(avaURL)
-                .setImage(avaURL)
-                .setFooter(`Bot by phamleduy04#9999`)
-            message.channel.send(embed)
-
-        } else if (member.id == '455935236262592512') return message.reply(`Lấy avatar cc`)
-        else {
-            let avaURL = member.user.displayAvatarURL
-            if (avaURL.includes('.gif')) avaURL = `${avaURL}?size=1024&f=.gif`
-            const embed = new RichEmbed()
-                .setTitle(`Link avatar: `)
-                .setURL(avaURL)
-                .setImage(avaURL)
-                .setFooter(`Bot by phamleduy04#9999`)
-            message.channel.send(embed)
-
+        const embed = new MessageEmbed()
+        var member = message.mentions.members.first() || message.guild.members.cache.get(args[0])
+        if (member) {
+            var avaurl = member.user.avatarURL({ format: 'jpg', dynamic: true, size: 1024 })
+        } else {
+            var avaurl = message.author.avatarURL({ format: 'jpg', dynamic: true, size: 1024 })
         }
+        embed.setImage(avaurl)
+        embed.setTitle(`Link avatar: `)
+        embed.setURL(avaurl)
+        message.channel.send(embed)
     }
 }

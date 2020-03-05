@@ -1,4 +1,4 @@
-const { RichEmbed } = require("discord.js");
+const { MessageEmbed } = require("discord.js");
 var getJSON = require("get-json");
 module.exports = {
     name: "wink",
@@ -9,7 +9,7 @@ module.exports = {
         let url = `https://some-random-api.ml/animu/wink`
         getJSON(url, function(error, response) {
             if (error) return message.channel.send('Bot gặp lỗi trong khi lấy hình, vui lòng thử lại sau')
-            const embed = new RichEmbed()
+            const embed = new MessageEmbed()
                 .setDescription(`${message.member} vừa mới nháy mắt với ai đó 🤷‍♂️`)
                 .setImage(response.link)
                 .setFooter(`By AgentBot đẹp trai`)

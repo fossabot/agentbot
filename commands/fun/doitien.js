@@ -1,5 +1,5 @@
 const { KSoftClient } = require('ksoft.js');
-const { RichEmbed } = require('discord.js');
+const { MessageEmbed } = require('discord.js');
 var { ksoft_key } = require('../../config.json')
 const ksoft = new KSoftClient(ksoft_key);
 
@@ -16,7 +16,7 @@ module.exports = {
         let before = args[1].toUpperCase();
         let after = args[2];
         const respond = await ksoft.kumo.convert(val, before, after);
-        const embed = new RichEmbed()
+        const embed = new MessageEmbed()
             .setDescription(`Hệ thống đổi tiền`)
             .setAuthor(`AgentBot`)
             .addField("Giá trị trước khi đổi: ", `${val} ${before}`)

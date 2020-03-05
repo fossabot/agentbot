@@ -1,4 +1,4 @@
-const { RichEmbed } = require("discord.js");
+const { MessageEmbed } = require("discord.js");
 var getJSON = require("get-json");
 var { giphy_key } = require("../../config.json")
 module.exports = {
@@ -14,7 +14,7 @@ module.exports = {
             if (!person) {
                 return message.reply(`Đéo tag ai sao mà kiss`)
             } else {
-                const embed = new RichEmbed()
+                const embed = new MessageEmbed()
                     .setDescription(`${message.member} đã thơm ${person} vài cái =))) 💋`)
                     .setImage(response.data.images.original.url)
                     .setFooter(`By AgentBot đẹp trai`)

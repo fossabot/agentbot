@@ -14,7 +14,7 @@ module.exports = {
             return message.channel.send(`Bot đang bị cooldown, vui lòng thử lại sau 5s!`)
         } else {
             cooldown.add(client.user.id)
-            var tag = message.mentions.members.first() || message.guild.members.get(args[0])
+            var tag = message.mentions.members.first() || message.guild.members.cache.get(args[0])
             if (tag) {
                 var query = tag.user.username
             } else {
@@ -43,7 +43,7 @@ module.exports = {
                 .catch(error => {
                     console.log(error)
                 })
-            message.channel.send({ file: './shit.jpg' })
+            message.channel.send({ files: [{ attachment: "./shit.jpg", name: "shit.jpg" }] })
             setTimeout(() => {
                 cooldown.delete(client.user.id)
             }, ms('5s'))

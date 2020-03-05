@@ -1,4 +1,4 @@
-const { RichEmbed } = require("discord.js");
+const { MessageEmbed } = require("discord.js");
 module.exports = {
     name: "ship",
     category: "fun",
@@ -14,7 +14,7 @@ module.exports = {
         const love = Math.random() * 100;
         const loveIndex = Math.floor(love / 10);
         const loveLevel = "💖".repeat(loveIndex) + "💔".repeat(10 - loveIndex);
-        const embed = new RichEmbed()
+        const embed = new MessageEmbed()
             .setColor("#ffb6c1")
             .addField(`☁ Tỉ lệ thành công của cặp đôi **${person.displayName}** và **${person1.displayName}**:`,
                 `💟 ${Math.floor(love)}%\n\n${loveLevel}`);

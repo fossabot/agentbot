@@ -27,7 +27,7 @@ module.exports = {
             if (err) console.log(err)
         });
 
-        let warnEmbed = new Discord.RichEmbed()
+        let warnEmbed = new Discord.MessageEmbed()
             .setAuthor(`Warn`)
             .setColor("#fc6400")
             .addField("Warned User", `${wUser}`)
@@ -35,7 +35,7 @@ module.exports = {
             .addField("Number of Warnings", warns[wUser.id].warns)
             .addField("Reason", reason);
 
-        let warnchannel = message.guild.channels.find(c => c.name === "log📝");
+        let warnchannel = message.guild.channels.cache.find(c => c.name === "log📝");
         if (!warnchannel) return message.reply("Couldn't find channel #log");
 
         warnchannel.send(warnEmbed);

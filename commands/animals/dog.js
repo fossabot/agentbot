@@ -1,5 +1,5 @@
 var getJSON = require("get-json")
-const { RichEmbed } = require("discord.js")
+const { MessageEmbed } = require("discord.js")
 module.exports = {
     name: "dog",
     category: "animals",
@@ -8,7 +8,7 @@ module.exports = {
     run: (client, message, args) => {
         let url = `https://random.dog/woof.json`
         getJSON(url, function(error, response) {
-            const embed = new RichEmbed()
+            const embed = new MessageEmbed()
                 .setTitle(`Dog pics/videos :D`)
                 .setURL(response.url)
                 .setImage(response.url)

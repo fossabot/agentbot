@@ -13,7 +13,7 @@ module.exports = {
 
         // Check if args[0] is a number
         if (isNaN(args[0]) || parseInt(args[0]) <= 0) {
-            return message.reply("Nhập số đi dmm").then(m => m.delete(5000));
+            return message.reply("Nhập số nào tao có thể xoá đi dmm").then(m => m.delete(5000));
         }
 
         // Maybe the bot can't delete messages
@@ -30,7 +30,6 @@ module.exports = {
         }
 
         message.channel.bulkDelete(deleteAmount, true)
-            .then(deleted => message.channel.send(`Đã xoá \`${deleted.size}\` messages.`)).then(m => m.delete(5000))
-            .catch(err => message.reply(`Lỗi:  ${err}`));
+            .then(deleted => message.channel.send(`Đã xoá \`${deleted.size}\` messages.`)).then(m => m.delete())
     }
 }
