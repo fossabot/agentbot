@@ -38,20 +38,20 @@ const search = {
     "vn": "Vietnam",
     "ca": "Canada",
     "us": "US",
-    "kr": "South Korea",
+    "kr": "\"Korea; South\"",
     "au": "Australia",
-    "cn": "Mainland China",
+    "cn": "China",
     "se": "Sweden",
     "hk": "Hong Kong",
     "fr": "France"
 }
 const quocgia = {
-    "Vietnam": "Việt Nam",
+    "Viet Nam": "Việt Nam",
     "Canada": "Canada",
     "US": "Hoa Kì",
-    "South Korea": "Hàn Quốc",
+    "\"Korea; South\"": "Hàn Quốc",
     "Austria": "Úc",
-    "Mainland China": "Trung Quốc",
+    "China": "Trung Quốc",
     "Sweden": "Thuỵ Điển",
     "Hong Kong": "Hong Kong",
     "France": "Pháp"
