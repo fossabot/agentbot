@@ -25,7 +25,7 @@ client.on("ready", () => {
 
     client.user.setPresence({
         status: "online",
-        game: {
+        activity: {
             name: "me getting developed",
             type: "PLAYING"
         }
