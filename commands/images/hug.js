@@ -6,6 +6,7 @@ module.exports = {
     description: "Hug someone :D ",
     usage: "_hug [@tag]",
     run: (client, message, args) => {
+        if (!args[0]) return message.reply(`Địt mẹ không tag gì tao gởi ảnh bằng chim à`)
         let url = `https://some-random-api.ml/animu/hug`
         let nguoitag = message.mentions.members.array() || message.guild.members.get(args[0])
         getJSON(url, function(error, response) {

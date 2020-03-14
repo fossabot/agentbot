@@ -10,6 +10,7 @@ module.exports = {
     description: "Shit images",
     usage: "_shit <tag>",
     run: async(client, message, args) => {
+        if (!args[0]) return message.reply(`Địt mẹ không tag gì tao gởi ảnh bằng chim à`)
         if (cooldown.has(client.user.id)) {
             return message.channel.send(`Bot đang bị cooldown, vui lòng thử lại sau 5s!`)
         } else {

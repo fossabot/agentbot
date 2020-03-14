@@ -11,6 +11,7 @@ module.exports = {
     description: 'Xài đi rồi biết :\'>',
     usage: '_door <@tag>',
     run: async(client, message, args) => {
+        if (!args[0]) return message.reply(`Địt mẹ không tag gì tao gởi ảnh bằng chim à`)
         if (cooldown.has(client.user.id)) {
             return message.channel.send(`Bot đang bị cooldown, vui lòng chờ trong 5s!`)
         } else {
