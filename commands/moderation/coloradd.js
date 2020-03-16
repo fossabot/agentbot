@@ -6,7 +6,7 @@ module.exports = {
     category: "moderation",
     description: "Add role with color",
     usage: "_coloradd <hexcolor>",
-    run: (client, message, args) => {
+    run: async(client, message, args) => {
         if (!message.member.hasPermission("MANAGE_ROLES"))
             return message.reply("You don't have the required permissions to use this command.").then(m => m.delete(5000));
         if (!args[0])
@@ -16,7 +16,7 @@ module.exports = {
             color = color.slice(1)
         }
         let url = `https://www.thecolorapi.com/id?hex=${color}`;
-        getJSON(url, function(error, response) {
+        getJSON(url, async function(error, response) {
             if (error) return message.channel.send(`Bot lỗi, vui lòng thử lại sau.`)
                 //check coi màu đã có trong sv chưa
             var roles = [];
@@ -33,10 +33,15 @@ module.exports = {
                         color: color,
                         position: position,
                     }
+                }).then(r => {
+                    message.member.roles.add(r.id);
+                    return message.channel.send(`Đã add role màu: **${r.name}** cho **${message.author.tag}**`)
                 })
-                return message.channel.send(`Đã tạo role màu: **${search}** với hex code **${color}** ở vị trí **${position}**`)
+
             } else {
-                return message.channel.send(`Màu **${search}** này đã có trong server!`)
+                var rolemau = message.guild.roles.cache.find(r => r.name == search)
+                await message.member.roles.add(rolemau.id);
+                return message.channel.send(`Đã add role màu: **${rolemau.name}** cho **${message.author.tag}**`)
             }
         });
     }
