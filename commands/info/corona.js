@@ -2,6 +2,8 @@ const { MessageEmbed } = require("discord.js");
 const url = "https://corona-api.kompa.ai/graphql";
 const graphql = require("graphql-request");
 const ascii = require('ascii-table');
+const getJSON = require('get-json');
+const worldometers_url = 'https://coronaapiwom.herokuapp.com/apidata'
 const query = `query countries {
     countries {
         Country_Region
@@ -37,8 +39,8 @@ const graphqlclient = new graphql.GraphQLClient(url, {
 const search = {
     "vn": "Vietnam",
     "ca": "Canada",
-    "us": "US",
-    "kr": "Korea, South",
+    "us": "USA",
+    "kr": "S. Korea",
     "au": "Australia",
     "cn": "China",
     "se": "Sweden",
@@ -48,9 +50,9 @@ const search = {
 const quocgia = {
     "Viet Nam": "Việt Nam",
     "Canada": "Canada",
-    "US": "Hoa Kì",
-    "Korea, South": "Hàn Quốc",
-    "Austria": "Úc",
+    "USA": "Hoa Kì",
+    "S. Korea": "Hàn Quốc",
+    "Australia": "Úc",
     "China": "Trung Quốc",
     "Sweden": "Thuỵ Điển",
     "Hong Kong": "Hong Kong",
@@ -91,12 +93,14 @@ module.exports = {
                 var all_die = 0;
                 var all_recovered = 0;
                 let table = new ascii("Tình hình COVID-19 ở Việt Nam")
-                table.setHeading("Tỉnh thành", "Phát hiện", "Tử vong", "Bình phục")
+                table.setHeading("Tỉnh thành", "Phát hiện", "Tử vong", "Bình phục","Ngày cập nhật")
                 res.provinces.forEach(tentp => {
+                    var timestamp = new Date(parseInt(tentp.Last_Update))
+                    var date = timestamp.getDate() + '/' + (timestamp.getMonth() + 1) + '/' + timestamp.getFullYear()
                     all_confirmed = all_confirmed + parseInt(tentp.Confirmed)
                     all_die = all_die + parseInt(tentp.Deaths)
                     all_recovered = all_recovered + parseInt(tentp.Recovered)
-                    table.addRow(tentp.Province_Name, tentp.Confirmed, tentp.Deaths, tentp.Recovered)
+                    table.addRow(tentp.Province_Name, tentp.Confirmed, tentp.Deaths, tentp.Recovered,date)
                 });
                 table.addRow("Tổng cộng", all_confirmed.toString(), all_die.toString(), all_recovered.toString())
                 return message.channel.send(table.toString(), {
@@ -104,18 +108,16 @@ module.exports = {
                 });
             });
         } else if (args[0] && search[args[0].toLowerCase()]) {
-            graphqlclient.request(query).then(result => {
-                var json_data = result.countries.filter(find => find.Country_Region == search[args[0].toLowerCase()])
+            getJSON(worldometers_url).then(result => {
+                var json_data = result.filter(find => find.Country_Name == search[args[0]])
                 var json_data = json_data[0];
-                var timestamp = new Date(parseInt(json_data.Last_Update))
-                var date = timestamp.getDate() + '/' + (timestamp.getMonth() + 1) + '/' + timestamp.getFullYear()
                 const embed = new MessageEmbed()
                     .setAuthor(`Dữ liệu được tự động cập nhật`)
                     .setTitle(`Số ca nhiễm COVID-19 ở ${quocgia[search[args[0]]]} `)
-                    .addField(`Số ca đẵ xác nhận: `, `${json_data.Confirmed} ca`)
-                    .addField(`Số ca tử vong: `, `${json_data.Deaths} ca`)
-                    .addField(`Số ca đã hồi phục: `, `${json_data.Recovered} ca`)
-                    .addField(`Cập nhật vào ngày: `, date)
+                    .addField(`Số ca đẵ xác nhận: `, `${json_data.Total_Cases}(${json_data.New_Cases}) ca`)
+                    .addField(`Số ca tử vong: `, `${json_data.Total_Deaths}(${json_data.New_Deaths}) ca`)
+                    .addField(`Số ca đã hồi phục: `, `${json_data.Total_Recovered} ca`)
+                    .addField(`Số ca nghiêm trọng: `,`${json_data.Serious_Cases}`)
                     .setFooter(`Nguồn: corona.kompa.ai | Made by phamleduy04#9999`);
                 if (search[args[0]] == "Vietnam") embed.setDescription(`Tips: Sử dụng lệnh \`_corona vn full\` để hiển thị chi tiết.`)
                 message.channel.send(embed)
