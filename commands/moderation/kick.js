@@ -8,7 +8,7 @@ module.exports = {
     description: "Kicks the member",
     usage: "<id | mention>",
     run: async(client, message, args) => {
-        const logChannel = message.guild.channels.find(c => c.name === "log📝") || message.channel;
+        const logChannel = message.guild.channels.cache.find(c => c.name === "log📝") || message.channel;
 
         if (message.deletable) message.delete();
 
@@ -36,7 +36,7 @@ module.exports = {
                 .then(m => m.delete(5000));
         }
 
-        const toKick = message.mentions.members.first() || message.guild.members.get(args[0]);
+        const toKick = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
         // No member found
         if (!toKick) {
             return message.reply("Couldn't find that member, try again")
@@ -57,8 +57,8 @@ module.exports = {
 
         const embed = new MessageEmbed()
             .setColor("#ff0000")
-            .setThumbnail(toKick.user.displayAvatarURL)
-            .setFooter(message.member.displayName, message.author.displayAvatarURL)
+            .setThumbnail(toKick.user.avatarURL())
+            .setFooter(message.member.displayName, message.author.avatarURL())
             .setTimestamp()
             .setDescription(stripIndents `**- Kicked member:** ${toKick} (${toKick.id})
             **- Kicked by:** ${message.member} (${message.member.id})
