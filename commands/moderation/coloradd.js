@@ -7,8 +7,6 @@ module.exports = {
     description: "Add role with color",
     usage: "_coloradd <hexcolor>",
     run: async(client, message, args) => {
-        if (!message.member.hasPermission("MANAGE_ROLES"))
-            return message.reply("You don't have the required permissions to use this command.").then(m => m.delete(5000));
         if (!args[0])
             return message.reply("Không chọn màu thì kêu tao làm gì").then(m => m.delete(5000))
         var color = args[0];
